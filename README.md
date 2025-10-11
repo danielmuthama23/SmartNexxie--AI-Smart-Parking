@@ -1,60 +1,53 @@
+# 🧠 SmartNexxie – AI Smart Parking System
 
-* Data setup
-* AI Processing (YOLO + Predictions)
-* Monitoring & Dashboard (Spark + Lakehouse)
-* Power BI Integration
-* Visual AI Demo (YOLOv8 Parking Visualization)
+### 🚗 AI-Powered Parking Analytics, Blockchain Verification, RAG Assistant, and Power BI Integration
 
-# 🧠 REIMAGE-AI SMART PARKING SYSTEM
+**SmartNexxie** is an **end-to-end intelligent parking management platform** that unifies **computer vision, IoT sensor streams, retrieval-augmented prediction (RAG), and blockchain verification** through **Microsoft Fabric’s Lakehouse** and **EventStream**.
 
-### 🚗 AI-Powered Parking Analytics, Blockchain Verification, and Power BI Integration
-
-Reimage-AI Smart Parking is an **end-to-end intelligent parking management system** that uses **computer vision, IoT sensor data, AI predictions, and blockchain validation** to optimize urban parking efficiency.
-
-This system is built for **Microsoft Fabric Lakehouse** and integrates **YOLOv8**, **Spark SQL**, and **Power BI dashboards** for real-time monitoring and business intelligence.
+This solution integrates **YOLOv8**, **PySpark**, **Vector Embeddings**, **MCP Governance**, and **Power BI Dashboards** for **real-time monitoring, AI-assisted predictions, and explainable analytics**.
 
 ---
 
 ## 🧩 PROJECT OVERVIEW
 
-| Component                         | Description                                                             |
-| --------------------------------- | ----------------------------------------------------------------------- |
-| **01_Complete_Setup_And_Data**    | Sets up initial Lakehouse tables, simulates IoT sensor and traffic data |
-| **02_AI_Processing_Predictions**  | Runs YOLO detection, model inference, and predictive analytics          |
-| **03_Monitoring_Dashboard**       | Displays real-time data analytics and health monitoring                 |
-| **04_PowerBI_Advanced_Analytics** | Generates Power BI metrics, data marts, and business KPIs               |
-| **05_YOLOv8_Visualization**       | Visual computer vision demo – detects parking occupancy live from video |
+| Component                         | Description                                                                        |
+| --------------------------------- | ---------------------------------------------------------------------------------- |
+| **01_Complete_Setup_And_Data**    | Sets up Fabric Delta tables, ingests IoT data streams & synthetic traffic datasets |
+| **02_AI_Processing_Predictions**  | Runs YOLO detection, AI inference, RAG embeddings, and blockchain verification     |
+| **03_Monitoring_Dashboard**       | Monitors system health, KPIs, and real-time insights using EventStream & Spark     |
+| **04_PowerBI_Advanced_Analytics** | Generates Power BI metrics, data marts, and predictive business insights           |
+| **05_YOLOv8_Visualization**       | Visual AI demo for live parking video detection and RAG explanation assistant      |
 
 ---
 
 ## 🧱 SYSTEM ARCHITECTURE
 
 ```
-                ┌──────────────────────────┐
-                │   Parking Sensors (IoT)  │
-                └────────────┬─────────────┘
-                             │
+                ┌───────────────────────────┐
+                │  IoT Parking Sensors + CCTV│
+                └────────────┬───────────────┘
+                             │ (EventStream)
                              ▼
-                 ┌──────────────────────────┐
-                 │   Fabric Delta Lakehouse │
-                 └────────────┬─────────────┘
+                 ┌───────────────────────────┐
+                 │ Fabric Delta Lakehouse    │
+                 └────────────┬───────────────┘
                              │
-             ┌───────────────┴────────────────┐
-             │                                │
-             ▼                                ▼
-    ┌───────────────────────┐        ┌────────────────────────┐
-    │ AI Processing (YOLOv8)│        │ Traffic Predictions AI │
-    └─────────────┬─────────┘        └──────────┬─────────────┘
-                  │                             │
-                  ▼                             ▼
+             ┌───────────────┴──────────────────┐
+             │                                  │
+             ▼                                  ▼
+    ┌───────────────────────┐         ┌────────────────────────┐
+    │ AI Processing (YOLOv8)│         │ Traffic Predictions RAG │
+    └─────────────┬─────────┘         └──────────┬──────────────┘
+                  │                              │
+                  ▼                              ▼
         ┌──────────────────┐          ┌────────────────────────┐
         │ Blockchain Layer │          │ Model Context Protocol │
         └────────┬─────────┘          └────────┬───────────────┘
-                 │                             │
-                 ▼                             ▼
-         ┌────────────────────────────────────────────────┐
-         │ Power BI + Fabric Dashboards & Visualizations  │
-         └────────────────────────────────────────────────┘
+                 │                              │
+                 ▼                              ▼
+       ┌────────────────────────────────────────────────────────┐
+       │ Power BI + Fabric Dashboards + Visual RAG Assistant     │
+       └────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -63,241 +56,193 @@ This system is built for **Microsoft Fabric Lakehouse** and integrates **YOLOv8*
 
 ### 1️⃣ Environment Setup
 
-Install the following (preferably in a virtual environment):
+Install dependencies:
 
 ```bash
-pip install pyspark pandas numpy ultralytics opencv-python
+pip install pyspark pandas numpy ultralytics opencv-python faiss-cpu sentence-transformers
 pip install matplotlib python-docx openpyxl reportlab
+pip install watchdog websockets
 ```
 
-If using **Microsoft Fabric / Synapse**:
+If using **Microsoft Fabric or Synapse**:
 
-* Attach the **Delta Lakehouse** before executing notebooks.
-* Run notebooks in sequence.
+* Attach your **Lakehouse (Delta)**.
+* Enable **EventStream** and **Real-Time Hub**.
+* Run notebooks in sequence (01 → 05).
 
 ---
 
-### 2️⃣ Folder Structure
+## 📁 Folder Structure
 
 ```
-reimage-ai-smart-parking/
+SmartNexxie-AI-Smart-Parking/
 │
 ├── data/
-│   ├── sample_video.mp4
 │   ├── parking_zones.json
+│   ├── sample_video.mp4
 │   └── mock_sensor_data.csv
 │
 ├── models/
-│   └── yolov8n.pt
+│   ├── yolov8n.pt
+│   └── faiss_index.index
 │
 ├── notebooks/
 │   ├── 01_Complete_Setup_And_Data.html
 │   ├── 02_AI_Processing_Predictions.html
 │   ├── 03_Monitoring_Dashboard.html
-│   └── 04_PowerBI_Advanced_Analytics.html
-│
-├── output/
-│   ├── powerbi_metrics.delta
-│   ├── dashboard_summary.txt
-│   └── parking_visual.mp4
+│   ├── 04_PowerBI_Advanced_Analytics.html
+│   └── 05_YOLOv8_Visualization.html
 │
 ├── src/
 │   ├── setup_and_data.py
 │   ├── ai_processing_predictions.py
 │   ├── monitoring_dashboard.py
 │   ├── powerbi_advanced_analytics.py
-│   └── yolo_visualization.py
+│   ├── yolo_visualization.py
+│   └── rag_assistant.py
 │
 └── README.md
 ```
 
 ---
 
-## 🚀 USAGE GUIDE
+## 🚀 MODULES OVERVIEW
 
-### STEP 1: Setup and Data Initialization
+### 🏗️ 01 — Data Setup (IoT + EventStream + Delta)
 
-Run:
+* Simulates **IoT sensors** + **CCTV feeds** using `watchdog` and `websockets`.
+* Streams data to **Microsoft Fabric EventStream** and **OneLake Delta tables**.
+* Creates:
+
+  * `ParkingSensorData`
+  * `TrafficCameraData`
+  * `HistoricalTraffic`
+  * `ModelRegistry`
+
+**Technologies:**
+`EventStream`, `Spark Structured Streaming`, `Delta Lake`, `Fabric Lakehouse`, `Python Watchdog`
+
+---
+
+### 🧠 02 — AI Processing (YOLO + Predictions + MCP + RAG)
+
+* YOLOv8 for vehicle detection (`ultralytics`).
+* **RAG (Retrieval-Augmented Generation)** for context-aware predictions.
+* Embeddings built with `sentence-transformers (all-MiniLM-L6-v2)`.
+* FAISS vector store for similarity search.
+* **MCP (Model Context Protocol)** for AI governance & Hedera blockchain audit.
+* Event-driven updates from **EventStream** → Model inference → Delta updates.
+
+**Technologies:**
+`YOLOv8`, `PyTorch`, `RAG`, `FAISS`, `Sentence-Transformers`, `PySpark`, `Hedera SDK (simulated)`, `EventStream`
+
+---
+
+### 📊 03 — Monitoring & Dashboard (Spark + Lakehouse + EventStream)
+
+* Real-time KPIs on parking utilization and YOLO health.
+* Stream analytics from EventStream to Spark DataFrames.
+* Monitors:
+
+  * Occupancy trends
+  * Confidence drift
+  * Blockchain verification stats
+  * Event-based alerts
+
+**Technologies:**
+`PySpark SQL`, `Delta Live Tables`, `Microsoft Fabric EventStream`, `Kafka`, `WebSocket Dashboard`
+
+---
+
+### 📈 04 — Power BI Advanced Analytics
+
+* Power BI marts for:
+
+  * `RealTimeOccupancy`
+  * `TrafficAnalytics`
+  * `AIConfidenceMetrics`
+  * `BlockchainAuditTrail`
+* Custom DAX KPIs + RLS (Row-Level Security)
+* Integration via `Power BI Streaming Datasets` API
+
+**Technologies:**
+`Power BI`, `Microsoft Fabric Dataflow`, `DAX`, `Lakehouse DirectQuery`, `Streaming Dataset API`
+
+---
+
+### 🎥 05 — YOLOv8 Visualization + RAG Assistant
+
+* Computer vision dashboard showing:
+
+  * Detected vehicles
+  * Occupancy overlays
+  * AI-predicted availability
+* Integrated **RAG Assistant** that answers natural language queries like:
+
+  > “Which zones are most congested between 8–10 AM on weekdays?”
+
+**Technologies:**
+`OpenCV`, `Matplotlib`, `Ultralytics YOLOv8`, `RAG (Sentence-Transformers + FAISS)`, `PySpark`, `Power BI`
+
+---
+
+## 🧠 SAMPLE RAG QUERY
 
 ```python
-python src/setup_and_data.py
+from rag_assistant import RAGAssistant
+
+rag = RAGAssistant(spark)
+rag.build_vector_store(["HistoricalTraffic"], force_rebuild=True)
+
+query = "Which zones have the highest average occupancy during weekday mornings?"
+result = rag.answer(query, top_k=5, mcp_system=mcp)
+
+print("Answer:", result["answer"])
 ```
 
-This script creates:
-
-* **ParkingSensorData**
-* **TrafficCameraData**
-* **HistoricalTraffic**
-* **YOLOProcessedData**
-* **TrafficPredictions**
-
-All stored in your **Lakehouse**.
-
----
-
-### STEP 2: AI Processing and Predictions
-
-Run:
-
-```python
-python src/ai_processing_predictions.py
-```
-
-Performs:
-
-* YOLO-based vehicle detection.
-* AI inference for future parking occupancy.
-* Blockchain-like verification simulation.
-* Model Context Protocol (MCP) audit logging.
-
----
-
-### STEP 3: Monitoring Dashboard
-
-Run:
-
-```python
-python src/monitoring_dashboard.py
-```
-
-Displays:
-
-* Occupancy rates by zone.
-* Traffic congestion trends.
-* YOLO performance metrics.
-* Prediction accuracy.
-* System health and freshness checks.
-
-✅ Output Example:
+**Sample Output:**
 
 ```
-🏥 SYSTEM HEALTH CHECK:
-   Parking Data: ✅ HEALTHY
-   Traffic Data: ✅ HEALTHY
-   Predictions: ✅ HEALTHY
-   YOLO Processing: ✅ HEALTHY
+Answer:
+Zone_B and Zone_C have the highest weekday morning occupancy (avg 89% and 85%).
+
+Retrieved docs:
+- Zone_B 2025-06-02 score: 0.89
+- Zone_C 2025-06-03 score: 0.87
 ```
-
----
-
-### STEP 4: Power BI Advanced Analytics
-
-Run:
-
-```python
-python src/powerbi_advanced_analytics.py
-```
-
-Generates:
-
-* Power BI optimized tables:
-
-  * `PowerBI_RealTimeOccupancy`
-  * `PowerBI_TrafficAnalytics`
-  * `PowerBI_AIPerformance`
-  * `PowerBI_BlockchainAudit`
-* Advanced metrics and KPIs
-* Business impact dashboards
-* Alerts and AI insights
-
-✅ Sample KPIs:
-
-* Occupancy > 85% → Alert: “High Occupancy”
-* Blockchain Verification < 90% → Alert: “Integrity Issue”
-
----
-
-### STEP 5: YOLOv8 Parking Visualization
-
-Run:
-
-```python
-python src/yolo_visualization.py
-```
-
-Displays and records visual parking occupancy analytics from video feed.
-
-🧠 Features:
-
-* Draws parking regions and tracks vehicles in real-time.
-* Calculates **occupancy rate**, **availability**, and **confidence**.
-* Saves annotated video (`output/parking_visual.mp4`).
-* Integrates metrics with Power BI if desired.
-
----
-
-## 🧠 SAMPLE OUTPUT
-
-```
-🎥 STEP 4: VISUAL AI DEMO – YOLOv8 PARKING MANAGEMENT VISUALIZATION
-🚗 Processing video frames for parking visualization...
-✅ Visualization complete — saved to output/parking_visual.mp4
-🖼️ Processed 480 frames in 32s
-📊 Final Occupancy Rate: 67.5% (9/12 occupied)
-```
-
----
-
-## 📊 POWER BI DASHBOARD SUMMARY
-
-| Metric                     | Description                                     |
-| -------------------------- | ----------------------------------------------- |
-| **Real-Time Occupancy**    | Tracks zone occupancy using YOLO detections     |
-| **Traffic Flow**           | Displays congestion levels and vehicle density  |
-| **AI Performance**         | Shows YOLO and prediction system confidence     |
-| **Blockchain Audit Trail** | Validates all IoT and AI data transactions      |
-| **Business KPIs**          | Calculates revenue, utilization, and efficiency |
-
----
-
-## 🔗 INTEGRATIONS
-
-| Integration                            | Purpose                                 |
-| -------------------------------------- | --------------------------------------- |
-| **Microsoft Fabric / Delta Lakehouse** | Real-time analytics and data storage    |
-| **Ultralytics YOLOv8**                 | Vehicle detection and tracking          |
-| **Power BI**                           | Visualization and business intelligence |
-| **MCP (Model Context Protocol)**       | AI model governance and traceability    |
-| **Hedera Blockchain (Simulated)**      | Data immutability and audit logging     |
 
 ---
 
 ## 🧰 TECHNOLOGY STACK
 
-| Layer                      | Tools Used                             |
-| -------------------------- | -------------------------------------- |
-| **Frontend Visualization** | Power BI, Matplotlib, OpenCV           |
-| **AI/ML Models**           | YOLOv8, TensorFlow (optional), PyTorch |
-| **Backend Processing**     | PySpark, Pandas, Microsoft Fabric      |
-| **Storage**                | Delta Lakehouse (OneLake)              |
-| **Security**               | Blockchain Verification (Simulated)    |
-| **Governance**             | Model Context Protocol (MCP)           |
+| Layer                        | Tools & Frameworks                                                         |
+| ---------------------------- | -------------------------------------------------------------------------- |
+| **Data Ingestion**           | Microsoft Fabric EventStream, Delta Lake, PySpark Streaming                |
+| **AI/ML Models**             | YOLOv8, LSTM, Sentence-Transformers, FAISS, PyTorch, TensorFlow (optional) |
+| **Governance & Security**    | Model Context Protocol (MCP), Hedera Blockchain (simulated), JSON Hashing  |
+| **Analytics & BI**           | Power BI, Fabric Dataflows, Spark SQL, DAX                                 |
+| **Visualization & Frontend** | OpenCV, Matplotlib, Power BI Embedded                                      |
+| **Storage**                  | Microsoft OneLake, Delta Lakehouse, Parquet                                |
+| **Orchestration**            | EventStream, Lakehouse Pipelines, Azure Functions (optional)               |
+| **Language / Framework**     | Python 3.11, PySpark, Pandas, SQL                                          |
 
 ---
 
-## 📈 KPIs AND ALERTS
+## ⚙️ KPIs & ALERTS
 
-| KPI                     | Target | Action                     |
+| Metric                  | Target | Action                     |
 | ----------------------- | ------ | -------------------------- |
-| Occupancy Rate          | < 85%  | Notify operations          |
-| AI Confidence           | > 0.9  | Continue normal operations |
-| Blockchain Verification | > 95%  | Maintain ledger            |
-| System Uptime           | > 99%  | SLA Compliance             |
-
----
-
-## 🧠 ADVANCED INSIGHTS
-
-✅ **Peak Hours:** 8:00 AM - 10:00 AM
-✅ **Most Occupied Zone:** PZ-3 (92% average occupancy)
-✅ **Blockchain Verified Records:** 99.2%
-✅ **AI Confidence:** 91.1% across 12 cameras
+| Occupancy Rate          | <85%   | Notify Operations          |
+| YOLO Confidence         | >0.9   | Continue Normal Ops        |
+| Blockchain Verification | >95%   | Maintain Data Integrity    |
+| RAG Retrieval Accuracy  | >0.88  | Adjust Embeddings if Lower |
+| EventStream Latency     | <2 sec | Ensure Real-Time Flow      |
 
 ---
 
 ## 🧾 LICENSE
 
-This project is open-source and licensed under the **MIT License**.
+This project is licensed under the **MIT License**.
 
 ---
 
@@ -305,17 +250,16 @@ This project is open-source and licensed under the **MIT License**.
 
 **Daniel Muthama**
 💻 Software Engineer | AI & Data Science Specialist
-🌍 Kenya, Africa | Remote-friendly
+🌍 Kenya, Africa | Remote-Ready
 📧 [danielmuthama.dev@gmail.com](mailto:danielmuthama.dev@gmail.com)
 
 ---
 
 ## ⭐ FUTURE ROADMAP
 
-* [ ] Integrate **live streaming** dashboard via WebSocket
-* [ ] Deploy **containerized version** using Docker + Azure Fabric
-* [ ] Integrate **Power BI Streaming Dataset API**
-* [ ] Add **vehicle classification (EV vs Non-EV)**
-* [ ] Predict **future parking availability** by zone using LSTM
+* [ ] Deploy **Azure Containerized EventStream RAG System**
+* [ ] Integrate **Live WebSocket Dashboard**
+* [ ] Add **EV vs Non-EV Classification**
+* [ ] Expand to **Smart City Traffic Flow Predictions**
+* [ ] Build **LLM-based Parking Insights Assistant**
 
-# SmartNexxie--AI-Smart-Parking

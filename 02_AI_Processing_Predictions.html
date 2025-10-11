@@ -15104,7 +15104,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div id="cell-id=a06c723c" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div id="cell-id=2de210ea" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15493,22 +15493,23 @@ only showing top 10 rows
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython"><pre><span></span><span class="c1"># =============================================================</span>
-<span class="c1"># 🤖 REIMAGE-AI SMART PARKING - AI PROCESSING WITH MCP</span>
+<span class="c1"># 🤖 REIMAGE-AI SMART PARKING - AI PROCESSING WITH MCP (FIXED)</span>
 <span class="c1"># =============================================================</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🤖 REIMAGE-AI SMART PARKING - AI PROCESSING WITH MCP&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🤖 REIMAGE-AI SMART PARKING - AI PROCESSING WITH MCP (FIXED)&quot;</span><span class="p">)</span>
 
 <span class="c1"># =============================================================</span>
-<span class="c1"># STEP 0: RE-INITIALIZE HEDERA MANAGER (needed if run standalone)</span>
+<span class="c1"># STEP 0: RE-INITIALIZE HEDERA MANAGER</span>
 <span class="c1"># =============================================================</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚙️ Re-initializing Hedera Blockchain Manager...&quot;</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">hashlib</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">random</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
 <span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
 
@@ -15534,7 +15535,7 @@ only showing top 10 rows
     <span class="k">def</span> <span class="nf">simulate_hedera_transaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tx_type</span><span class="o">=</span><span class="s2">&quot;DATA_STORAGE&quot;</span><span class="p">):</span>
         <span class="n">data_hash</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_data_hash</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">ts</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
-        <span class="n">receipt</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;transaction_id&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;0.0.</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="s2">&quot;data_hash&quot;</span><span class="p">:</span> <span class="n">data_hash</span><span class="p">,</span>
             <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">ts</span><span class="p">,</span>
@@ -15543,7 +15544,6 @@ only showing top 10 rows
             <span class="s2">&quot;topic_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">hedera_config</span><span class="p">[</span><span class="s2">&quot;topic_id&quot;</span><span class="p">],</span>
             <span class="s2">&quot;blockchain_verified&quot;</span><span class="p">:</span> <span class="kc">True</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="n">receipt</span>
 
     <span class="k">def</span> <span class="nf">store_on_blockchain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">tx_data</span> <span class="o">=</span> <span class="p">{</span>
@@ -15560,17 +15560,12 @@ only showing top 10 rows
         <span class="p">})</span>
         <span class="k">return</span> <span class="n">stored</span><span class="p">,</span> <span class="n">receipt</span>
 
-<span class="c1"># ✅ instantiate</span>
 <span class="n">hedera_manager</span> <span class="o">=</span> <span class="n">HederaBlockchainManager</span><span class="p">()</span>
 
-
 <span class="c1"># =============================================================</span>
-<span class="c1"># STEP 1: MODEL CONTEXT PROTOCOL (MCP) IMPLEMENTATION</span>
+<span class="c1"># STEP 1: MODEL CONTEXT PROTOCOL (MCP)</span>
 <span class="c1"># =============================================================</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚖️ STEP 1: MODEL CONTEXT PROTOCOL (MCP) IMPLEMENTATION...&quot;</span><span class="p">)</span>
-
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">hashlib</span><span class="o">,</span> <span class="nn">json</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚖️ STEP 1: MODEL CONTEXT PROTOCOL (MCP)...&quot;</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">ModelContextProtocol</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hedera_manager</span><span class="p">):</span>
@@ -15591,461 +15586,170 @@ only showing top 10 rows
             <span class="s2">&quot;last_updated&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
             <span class="s2">&quot;model_hash&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span><span class="p">(</span><span class="n">performance_metrics</span><span class="p">)</span>
         <span class="p">}</span>
-        <span class="n">stored</span><span class="p">,</span> <span class="n">receipt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hedera</span><span class="o">.</span><span class="n">store_on_blockchain</span><span class="p">(</span>
-            <span class="n">info</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;model_id&quot;</span><span class="p">:</span> <span class="n">model_id</span><span class="p">,</span> <span class="s2">&quot;registration_type&quot;</span><span class="p">:</span> <span class="s2">&quot;MODEL_DEPLOYMENT&quot;</span><span class="p">}</span>
-        <span class="p">)</span>
+        <span class="n">stored</span><span class="p">,</span> <span class="n">receipt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hedera</span><span class="o">.</span><span class="n">store_on_blockchain</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">receipt</span><span class="p">:</span>
             <span class="n">info</span><span class="p">[</span><span class="s2">&quot;blockchain_tx_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">receipt</span><span class="p">[</span><span class="s2">&quot;transaction_id&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model_registry</span><span class="p">[</span><span class="n">model_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">info</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_save</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+
+        <span class="c1"># ✅ FIX: use mergeSchema + allow missing table</span>
+        <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span><span class="n">info</span><span class="p">])</span> \
+            <span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;append&quot;</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;mergeSchema&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;ModelRegistry&quot;</span><span class="p">)</span>
+
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Registered model </span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_registry</span><span class="p">[</span><span class="n">model_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">info</span>
         <span class="k">return</span> <span class="n">model_id</span>
 
     <span class="k">def</span> <span class="nf">deploy_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_id</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">&quot;PRODUCTION&quot;</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">model_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_registry</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Model </span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">);</span> <span class="k">return</span> <span class="kc">False</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Model </span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
         <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_registry</span><span class="p">[</span><span class="n">model_id</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;PRODUCTION&quot;</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span><span class="s2">&quot;precision&quot;</span><span class="p">,</span><span class="s2">&quot;recall&quot;</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;performance_metrics&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.8</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ </span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2"> below threshold </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span> <span class="k">return</span> <span class="kc">False</span>
-        <span class="n">m</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">env</span><span class="p">;</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;deployed_date&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hedera</span><span class="o">.</span><span class="n">store_on_blockchain</span><span class="p">(</span>
-            <span class="p">{</span><span class="s2">&quot;model_id&quot;</span><span class="p">:</span><span class="n">model_id</span><span class="p">,</span><span class="s2">&quot;env&quot;</span><span class="p">:</span><span class="n">env</span><span class="p">,</span><span class="s2">&quot;deployment_time&quot;</span><span class="p">:</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()},</span>
-            <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;deployment_type&quot;</span><span class="p">:</span><span class="s2">&quot;MODEL_DEPLOYMENT&quot;</span><span class="p">}</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_save</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="n">m</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">env</span>
+        <span class="n">m</span><span class="p">[</span><span class="s2">&quot;deployed_date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+        <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span><span class="n">m</span><span class="p">])</span> \
+            <span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;append&quot;</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;mergeSchema&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;ModelRegistry&quot;</span><span class="p">)</span>
+
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🚀 Deployed </span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">env</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="nf">log_inference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_id</span><span class="p">,</span> <span class="n">input_data</span><span class="p">,</span> <span class="n">output_data</span><span class="p">,</span> <span class="n">conf</span><span class="p">):</span>
-        <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;model_id&quot;</span><span class="p">:</span><span class="n">model_id</span><span class="p">,</span><span class="s2">&quot;input&quot;</span><span class="p">:</span><span class="n">input_data</span><span class="p">,</span><span class="s2">&quot;output&quot;</span><span class="p">:</span><span class="n">output_data</span><span class="p">,</span>
-              <span class="s2">&quot;confidence&quot;</span><span class="p">:</span><span class="n">conf</span><span class="p">,</span><span class="s2">&quot;timestamp&quot;</span><span class="p">:</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()}</span>
-        <span class="n">stored</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hedera</span><span class="o">.</span><span class="n">store_on_blockchain</span><span class="p">(</span>
-            <span class="n">data</span><span class="p">,</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;inference_type&quot;</span><span class="p">:</span><span class="s2">&quot;MODEL_PREDICTION&quot;</span><span class="p">}</span>
-        <span class="p">)</span>
-        <span class="k">return</span> <span class="n">r</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;model_id&quot;</span><span class="p">:</span> <span class="n">model_id</span><span class="p">,</span>
+            <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">input_data</span><span class="p">,</span>
+            <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="n">output_data</span><span class="p">,</span>
+            <span class="s2">&quot;confidence&quot;</span><span class="p">:</span> <span class="n">conf</span><span class="p">,</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">receipt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hedera</span><span class="o">.</span><span class="n">store_on_blockchain</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">receipt</span>
 
-    <span class="k">def</span> <span class="nf">_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span> <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-    <span class="k">def</span> <span class="nf">_save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span><span class="n">info</span><span class="p">])</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;append&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;ModelRegistry&quot;</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Registry save error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
 
-<span class="c1"># ✅ Initialize MCP</span>
 <span class="n">mcp</span> <span class="o">=</span> <span class="n">ModelContextProtocol</span><span class="p">(</span><span class="n">hedera_manager</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ MCP initialized with Hedera integration</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="c1"># =============================================================================</span>
-<span class="c1"># STEP 2: Register AI Models with MCP</span>
-<span class="c1"># =============================================================================</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📝 STEP 2: REGISTERING AI MODELS WITH MCP GOVERNANCE...&quot;</span><span class="p">)</span>
+<span class="c1"># =============================================================</span>
+<span class="c1"># STEP 2: REGISTER &amp; DEPLOY MODELS</span>
+<span class="c1"># =============================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📝 Registering Models with MCP...&quot;</span><span class="p">)</span>
 
-<span class="c1"># Define models to register</span>
 <span class="n">models_to_register</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;YOLO_Parking_Detection&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Computer_Vision&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;2.1&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;metrics&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;accuracy&#39;</span><span class="p">:</span> <span class="mf">0.94</span><span class="p">,</span>
-            <span class="s1">&#39;precision&#39;</span><span class="p">:</span> <span class="mf">0.92</span><span class="p">,</span>
-            <span class="s1">&#39;recall&#39;</span><span class="p">:</span> <span class="mf">0.93</span><span class="p">,</span>
-            <span class="s1">&#39;f1_score&#39;</span><span class="p">:</span> <span class="mf">0.925</span><span class="p">,</span>
-            <span class="s1">&#39;inference_time_ms&#39;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
-            <span class="s1">&#39;training_samples&#39;</span><span class="p">:</span> <span class="mi">50000</span><span class="p">,</span>
-            <span class="s1">&#39;model_size_mb&#39;</span><span class="p">:</span> <span class="mf">45.2</span>
-        <span class="p">},</span>
-        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;YOLO-based vehicle detection for parking spaces with blockchain audit&#39;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Traffic_Prediction_RAG&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;ML_Prediction&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;1.2&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;metrics&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;accuracy&#39;</span><span class="p">:</span> <span class="mf">0.87</span><span class="p">,</span>
-            <span class="s1">&#39;precision&#39;</span><span class="p">:</span> <span class="mf">0.85</span><span class="p">,</span>
-            <span class="s1">&#39;recall&#39;</span><span class="p">:</span> <span class="mf">0.86</span><span class="p">,</span>
-            <span class="s1">&#39;mse&#39;</span><span class="p">:</span> <span class="mf">0.023</span><span class="p">,</span>
-            <span class="s1">&#39;mae&#39;</span><span class="p">:</span> <span class="mf">0.045</span><span class="p">,</span>
-            <span class="s1">&#39;r_squared&#39;</span><span class="p">:</span> <span class="mf">0.82</span><span class="p">,</span>
-            <span class="s1">&#39;training_hours&#39;</span><span class="p">:</span> <span class="mi">24</span>
-        <span class="p">},</span>
-        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;RAG-based traffic pattern prediction with historical context&#39;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Parking_Occupancy_Predictor&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Time_Series_Forecasting&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;1.1&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;metrics&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;accuracy&#39;</span><span class="p">:</span> <span class="mf">0.91</span><span class="p">,</span>
-            <span class="s1">&#39;precision&#39;</span><span class="p">:</span> <span class="mf">0.89</span><span class="p">,</span>
-            <span class="s1">&#39;recall&#39;</span><span class="p">:</span> <span class="mf">0.90</span><span class="p">,</span>
-            <span class="s1">&#39;mae&#39;</span><span class="p">:</span> <span class="mf">0.045</span><span class="p">,</span>
-            <span class="s1">&#39;rmse&#39;</span><span class="p">:</span> <span class="mf">0.067</span><span class="p">,</span>
-            <span class="s1">&#39;training_epochs&#39;</span><span class="p">:</span> <span class="mi">100</span>
-        <span class="p">},</span>
-        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;LSTM-based parking occupancy prediction with real-time adaptation&#39;</span>
-    <span class="p">}</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;YOLO_Parking_Detection&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Computer_Vision&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;2.1&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="mf">0.94</span><span class="p">,</span> <span class="s2">&quot;precision&quot;</span><span class="p">:</span> <span class="mf">0.92</span><span class="p">,</span> <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="mf">0.93</span><span class="p">},</span> <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;YOLO vehicle detection&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Traffic_Prediction_RAG&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ML_Prediction&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.2&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="mf">0.87</span><span class="p">,</span> <span class="s2">&quot;precision&quot;</span><span class="p">:</span> <span class="mf">0.85</span><span class="p">,</span> <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="mf">0.86</span><span class="p">},</span> <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;RAG prediction model&quot;</span><span class="p">}</span>
 <span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🔧 Registering models with full governance...&quot;</span><span class="p">)</span>
-<span class="n">registered_models</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">model_config</span> <span class="ow">in</span> <span class="n">models_to_register</span><span class="p">:</span>
-    <span class="n">model_id</span> <span class="o">=</span> <span class="n">mcp</span><span class="o">.</span><span class="n">register_model</span><span class="p">(</span>
-        <span class="n">model_config</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
-        <span class="n">model_config</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">],</span>
-        <span class="n">model_config</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">],</span>
-        <span class="n">model_config</span><span class="p">[</span><span class="s1">&#39;metrics&#39;</span><span class="p">],</span>
-        <span class="n">model_config</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span>
-    <span class="p">)</span>
-    <span class="n">registered_models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
+<span class="n">registered_models</span> <span class="o">=</span> <span class="p">[</span><span class="n">mcp</span><span class="o">.</span><span class="n">register_model</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;metrics&quot;</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models_to_register</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">registered_models</span><span class="p">):</span>
+    <span class="n">mcp</span><span class="o">.</span><span class="n">deploy_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;PRODUCTION&quot;</span><span class="p">,</span> <span class="s2">&quot;STAGING&quot;</span><span class="p">][</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">])</span>
 
-<span class="c1"># Deploy models to appropriate environments</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🚀 DEPLOYING MODELS...&quot;</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">registered_models</span><span class="p">:</span>
-    <span class="c1"># Deploy first model to production</span>
-    <span class="n">mcp</span><span class="o">.</span><span class="n">deploy_model</span><span class="p">(</span><span class="n">registered_models</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;PRODUCTION&#39;</span><span class="p">)</span>
-    <span class="c1"># Deploy second model to staging</span>
-    <span class="n">mcp</span><span class="o">.</span><span class="n">deploy_model</span><span class="p">(</span><span class="n">registered_models</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;STAGING&#39;</span><span class="p">)</span>
-    <span class="c1"># Keep third in development</span>
-    <span class="n">mcp</span><span class="o">.</span><span class="n">deploy_model</span><span class="p">(</span><span class="n">registered_models</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;DEVELOPMENT&#39;</span><span class="p">)</span>
-
-<span class="c1"># =============================================================================</span>
-<span class="c1"># STEP 3: Enhanced YOLO Processing with MCP</span>
-<span class="c1"># =============================================================================</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🖼️ STEP 3: ENHANCED YOLO PROCESSING WITH MCP...&quot;</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">random</span>
+<span class="c1"># =============================================================</span>
+<span class="c1"># STEP 3: FIXED YOLO PROCESSING</span>
+<span class="c1"># =============================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🖼️ STEP 3: YOLO PROCESSING WITH MCP (FIXED)...&quot;</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">MCPEnhancedYOLOProcessor</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mcp_system</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mcp</span> <span class="o">=</span> <span class="n">mcp_system</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">yolo_model_id</span> <span class="o">=</span> <span class="s2">&quot;YOLO_Parking_Detection_v2.1&quot;</span>
-    
-    <span class="k">def</span> <span class="nf">process_with_governance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process images with full MCP governance&quot;&quot;&quot;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎯 Processing traffic images with MCP governance...&quot;</span><span class="p">)</span>
-        
-        <span class="k">try</span><span class="p">:</span>
-            <span class="c1"># Get traffic data for processing</span>
-            <span class="n">traffic_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                SELECT * FROM TrafficCameraData </span>
-<span class="s2">                ORDER BY timestamp DESC</span>
-<span class="s2">                LIMIT 15</span>
-<span class="s2">            &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mcp</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mcp</span> <span class="o">=</span> <span class="n">mcp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_id</span> <span class="o">=</span> <span class="s2">&quot;YOLO_Parking_Detection_v2.1&quot;</span>
 
-            <span class="n">processed_results</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">total_confidence</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">processed_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM TrafficCameraData ORDER BY timestamp DESC LIMIT 10&quot;</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">collect</span><span class="p">():</span>
+            <span class="n">orig</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;vehicle_count&quot;</span><span class="p">]</span>
+            <span class="n">yolo</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">orig</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="n">conf</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.97</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mcp</span><span class="o">.</span><span class="n">log_inference</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_id</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;cam&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;camera_id&quot;</span><span class="p">]},</span> <span class="p">{</span><span class="s2">&quot;yolo&quot;</span><span class="p">:</span> <span class="n">yolo</span><span class="p">},</span> <span class="n">conf</span><span class="p">)</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;camera_id&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;camera_id&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;original_vehicle_count&quot;</span><span class="p">:</span> <span class="n">orig</span><span class="p">,</span>
+                <span class="s2">&quot;yolo_vehicle_count&quot;</span><span class="p">:</span> <span class="n">yolo</span><span class="p">,</span>
+                <span class="s2">&quot;processing_confidence&quot;</span><span class="p">:</span> <span class="n">conf</span><span class="p">,</span>
+                <span class="s2">&quot;model_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_id</span><span class="p">,</span>
+                <span class="s2">&quot;mcp_inference_id&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="p">[</span><span class="s2">&quot;transaction_id&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;processed_at&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+                <span class="s2">&quot;processing_status&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETED&quot;</span>
+            <span class="p">})</span>
 
-            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">traffic_df</span><span class="o">.</span><span class="n">collect</span><span class="p">():</span>
-                <span class="c1"># Enhanced YOLO processing simulation</span>
-                <span class="n">original_count</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;vehicle_count&#39;</span><span class="p">]</span>
-                <span class="n">yolo_count</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">original_count</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-                <span class="n">confidence</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.97</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
-                
-                <span class="c1"># Log inference with MCP</span>
-                <span class="n">inference_data</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s1">&#39;camera_id&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;camera_id&#39;</span><span class="p">],</span>
-                    <span class="s1">&#39;original_count&#39;</span><span class="p">:</span> <span class="n">original_count</span><span class="p">,</span>
-                    <span class="s1">&#39;processed_count&#39;</span><span class="p">:</span> <span class="n">yolo_count</span>
-                <span class="p">}</span>
-                
-                <span class="n">output_data</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s1">&#39;yolo_count&#39;</span><span class="p">:</span> <span class="n">yolo_count</span><span class="p">,</span>
-                    <span class="s1">&#39;confidence&#39;</span><span class="p">:</span> <span class="n">confidence</span><span class="p">,</span>
-                    <span class="s1">&#39;processing_time_ms&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
-                <span class="p">}</span>
-                
-                <span class="c1"># Log to MCP with blockchain</span>
-                <span class="n">receipt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mcp</span><span class="o">.</span><span class="n">log_inference</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">yolo_model_id</span><span class="p">,</span>
-                    <span class="n">inference_data</span><span class="p">,</span>
-                    <span class="n">output_data</span><span class="p">,</span>
-                    <span class="n">confidence</span>
-                <span class="p">)</span>
-                
-                <span class="c1"># Enhanced results with MCP metadata</span>
-                <span class="n">yolo_record</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s1">&#39;camera_id&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;camera_id&#39;</span><span class="p">]),</span>
-                    <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span>
-                    <span class="s1">&#39;original_vehicle_count&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">original_count</span><span class="p">),</span>
-                    <span class="s1">&#39;yolo_vehicle_count&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">yolo_count</span><span class="p">),</span>
-                    <span class="s1">&#39;processing_confidence&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">confidence</span><span class="p">),</span>
-                    <span class="s1">&#39;model_id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">yolo_model_id</span><span class="p">,</span>
-                    <span class="s1">&#39;mcp_inference_id&#39;</span><span class="p">:</span> <span class="n">receipt</span><span class="p">[</span><span class="s1">&#39;transaction_id&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">receipt</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="s1">&#39;processed_at&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
-                    <span class="s1">&#39;processing_status&#39;</span><span class="p">:</span> <span class="s1">&#39;COMPLETED_WITH_MCP&#39;</span>
-                <span class="p">}</span>
-                <span class="n">processed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yolo_record</span><span class="p">)</span>
-                
-                <span class="n">total_confidence</span> <span class="o">+=</span> <span class="n">confidence</span>
-                <span class="n">processed_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">schema</span> <span class="o">=</span> <span class="n">StructType</span><span class="p">([</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;camera_id&quot;</span><span class="p">,</span> <span class="n">StringType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;original_vehicle_count&quot;</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;yolo_vehicle_count&quot;</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;processing_confidence&quot;</span><span class="p">,</span> <span class="n">DoubleType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;model_id&quot;</span><span class="p">,</span> <span class="n">StringType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;mcp_inference_id&quot;</span><span class="p">,</span> <span class="n">StringType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;processed_at&quot;</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;processing_status&quot;</span><span class="p">,</span> <span class="n">StringType</span><span class="p">())</span>
+        <span class="p">])</span>
+        <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;DROP TABLE IF EXISTS YOLOProcessedData&quot;</span><span class="p">)</span>
+        <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;YOLOProcessedData&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ YOLO processed: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="si">}</span><span class="s2"> records&quot;</span><span class="p">)</span>
 
-            <span class="c1"># Save results</span>
-            <span class="k">if</span> <span class="n">processed_results</span><span class="p">:</span>
-                <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;DROP TABLE IF EXISTS YOLOProcessedData&quot;</span><span class="p">)</span>
-                <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                    CREATE TABLE YOLOProcessedData (</span>
-<span class="s2">                        camera_id STRING,</span>
-<span class="s2">                        timestamp TIMESTAMP,</span>
-<span class="s2">                        original_vehicle_count INT,</span>
-<span class="s2">                        yolo_vehicle_count INT,</span>
-<span class="s2">                        processing_confidence DOUBLE,</span>
-<span class="s2">                        model_id STRING,</span>
-<span class="s2">                        mcp_inference_id STRING,</span>
-<span class="s2">                        processed_at TIMESTAMP,</span>
-<span class="s2">                        processing_status STRING</span>
-<span class="s2">                    ) USING DELTA</span>
-<span class="s2">                &quot;&quot;&quot;</span><span class="p">)</span>
-                
-                <span class="n">yolo_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">processed_results</span><span class="p">)</span>
-                <span class="n">yolo_df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;append&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;YOLOProcessedData&quot;</span><span class="p">)</span>
-                
-                <span class="n">avg_confidence</span> <span class="o">=</span> <span class="n">total_confidence</span> <span class="o">/</span> <span class="n">processed_count</span> <span class="k">if</span> <span class="n">processed_count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Processed </span><span class="si">{</span><span class="n">processed_count</span><span class="si">}</span><span class="s2"> images with MCP&quot;</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📊 Average Confidence: </span><span class="si">{</span><span class="n">avg_confidence</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                
-                <span class="k">return</span> <span class="n">processed_results</span>
+<span class="n">MCPEnhancedYOLOProcessor</span><span class="p">(</span><span class="n">mcp</span><span class="p">)</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
 
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Error in MCP-enhanced processing: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="p">[]</span>
-
-<span class="c1"># Initialize and run MCP-enhanced processor</span>
-<span class="n">yolo_processor</span> <span class="o">=</span> <span class="n">MCPEnhancedYOLOProcessor</span><span class="p">(</span><span class="n">mcp</span><span class="p">)</span>
-<span class="n">yolo_results</span> <span class="o">=</span> <span class="n">yolo_processor</span><span class="o">.</span><span class="n">process_with_governance</span><span class="p">()</span>
-
-<span class="c1"># =============================================================================</span>
-<span class="c1"># STEP 4: RAG Predictions with MCP</span>
-<span class="c1"># =============================================================================</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔮 STEP 4: RAG PREDICTIONS WITH MCP GOVERNANCE...&quot;</span><span class="p">)</span>
+<span class="c1"># =============================================================</span>
+<span class="c1"># STEP 4: FIXED RAG PREDICTIONS</span>
+<span class="c1"># =============================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔮 STEP 4: RAG PREDICTIONS WITH MCP (FIXED)...&quot;</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">MCPEnhancedRAGPredictor</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mcp_system</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mcp</span> <span class="o">=</span> <span class="n">mcp_system</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rag_model_id</span> <span class="o">=</span> <span class="s2">&quot;Traffic_Prediction_RAG_v1.2&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">knowledge_base</span> <span class="o">=</span> <span class="p">{}</span>
-    
-    <span class="k">def</span> <span class="nf">build_knowledge_base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build knowledge base with quality assessment&quot;&quot;&quot;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📚 Building MCP-governed knowledge base...&quot;</span><span class="p">)</span>
-        
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">historical_data</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM HistoricalTraffic&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
-            
-            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">historical_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-                <span class="n">pattern_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;zone_id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;hour&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;weather_condition&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-                
-                <span class="k">if</span> <span class="n">pattern_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">knowledge_base</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">knowledge_base</span><span class="p">[</span><span class="n">pattern_key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-                
-                <span class="n">pattern_quality</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assess_pattern_quality</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-                
-                <span class="bp">self</span><span class="o">.</span><span class="n">knowledge_base</span><span class="p">[</span><span class="n">pattern_key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                    <span class="s1">&#39;occupancy&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;average_occupancy&#39;</span><span class="p">],</span>
-                    <span class="s1">&#39;volume&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;traffic_volume&#39;</span><span class="p">],</span>
-                    <span class="s1">&#39;is_event&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;event_day&#39;</span><span class="p">],</span>
-                    <span class="s1">&#39;quality_score&#39;</span><span class="p">:</span> <span class="n">pattern_quality</span><span class="p">,</span>
-                    <span class="s1">&#39;data_hash&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;data_hash&#39;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mcp</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mcp</span> <span class="o">=</span> <span class="n">mcp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_id</span> <span class="o">=</span> <span class="s2">&quot;Traffic_Prediction_RAG_v1.2&quot;</span>
+
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">zones</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ZONE_A&quot;</span><span class="p">,</span> <span class="s2">&quot;ZONE_B&quot;</span><span class="p">,</span> <span class="s2">&quot;ZONE_C&quot;</span><span class="p">]</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">zones</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">):</span>
+                <span class="n">occ</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+                <span class="n">conf</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+                <span class="n">rec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mcp</span><span class="o">.</span><span class="n">log_inference</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_id</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;zone&quot;</span><span class="p">:</span> <span class="n">z</span><span class="p">,</span> <span class="s2">&quot;hour&quot;</span><span class="p">:</span> <span class="n">h</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;occupancy&quot;</span><span class="p">:</span> <span class="n">occ</span><span class="p">},</span> <span class="n">conf</span><span class="p">)</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s2">&quot;zone_id&quot;</span><span class="p">:</span> <span class="n">z</span><span class="p">,</span>
+                    <span class="s2">&quot;target_hour&quot;</span><span class="p">:</span> <span class="n">h</span><span class="p">,</span>
+                    <span class="s2">&quot;predicted_occupancy&quot;</span><span class="p">:</span> <span class="n">occ</span><span class="p">,</span>
+                    <span class="s2">&quot;confidence&quot;</span><span class="p">:</span> <span class="n">conf</span><span class="p">,</span>
+                    <span class="s2">&quot;weather_condition&quot;</span><span class="p">:</span> <span class="s2">&quot;Sunny&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;is_event_day&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                    <span class="s2">&quot;quality_patterns_used&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+                    <span class="s2">&quot;mcp_inference_id&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="p">[</span><span class="s2">&quot;transaction_id&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;prediction_time&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
                 <span class="p">})</span>
-            
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Knowledge base built with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">knowledge_base</span><span class="p">)</span><span class="si">}</span><span class="s2"> patterns&quot;</span><span class="p">)</span>
-            
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Error building knowledge base: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    
-    <span class="k">def</span> <span class="nf">predict_with_governance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zone_id</span><span class="p">,</span> <span class="n">target_hour</span><span class="p">,</span> <span class="n">weather</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make predictions with full MCP governance&quot;&quot;&quot;</span>
-        <span class="c1"># Find similar patterns</span>
-        <span class="n">similar_patterns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_quality_patterns</span><span class="p">(</span><span class="n">zone_id</span><span class="p">,</span> <span class="n">target_hour</span><span class="p">,</span> <span class="n">weather</span><span class="p">,</span> <span class="n">is_event</span><span class="p">)</span>
-        
-        <span class="k">if</span> <span class="n">similar_patterns</span><span class="p">:</span>
-            <span class="c1"># Quality-weighted prediction</span>
-            <span class="n">total_weight</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">weighted_occupancy</span> <span class="o">=</span> <span class="mi">0</span>
-            
-            <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">similar_patterns</span><span class="p">:</span>
-                <span class="n">weight</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">[</span><span class="s1">&#39;quality_score&#39;</span><span class="p">]</span>
-                <span class="n">weighted_occupancy</span> <span class="o">+=</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">pattern</span><span class="p">[</span><span class="s1">&#39;occupancy&#39;</span><span class="p">]</span>
-                <span class="n">total_weight</span> <span class="o">+=</span> <span class="n">weight</span>
-            
-            <span class="n">predicted_occupancy</span> <span class="o">=</span> <span class="n">weighted_occupancy</span> <span class="o">/</span> <span class="n">total_weight</span>
-            <span class="n">confidence</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">total_weight</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">similar_patterns</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">predicted_occupancy</span> <span class="o">=</span> <span class="mf">0.5</span>
-            <span class="n">confidence</span> <span class="o">=</span> <span class="mf">0.3</span>
-        
-        <span class="c1"># Add realistic noise</span>
-        <span class="n">noise</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
-        <span class="n">final_prediction</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">predicted_occupancy</span> <span class="o">+</span> <span class="n">noise</span><span class="p">))</span>
-        
-        <span class="c1"># Log prediction with MCP</span>
-        <span class="n">input_data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;zone_id&#39;</span><span class="p">:</span> <span class="n">zone_id</span><span class="p">,</span>
-            <span class="s1">&#39;target_hour&#39;</span><span class="p">:</span> <span class="n">target_hour</span><span class="p">,</span>
-            <span class="s1">&#39;weather&#39;</span><span class="p">:</span> <span class="n">weather</span><span class="p">,</span>
-            <span class="s1">&#39;is_event&#39;</span><span class="p">:</span> <span class="n">is_event</span>
-        <span class="p">}</span>
-        
-        <span class="n">output_data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;predicted_occupancy&#39;</span><span class="p">:</span> <span class="n">final_prediction</span><span class="p">,</span>
-            <span class="s1">&#39;confidence&#39;</span><span class="p">:</span> <span class="n">confidence</span><span class="p">,</span>
-            <span class="s1">&#39;patterns_used&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">similar_patterns</span><span class="p">)</span>
-        <span class="p">}</span>
-        
-        <span class="n">receipt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mcp</span><span class="o">.</span><span class="n">log_inference</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">rag_model_id</span><span class="p">,</span>
-            <span class="n">input_data</span><span class="p">,</span>
-            <span class="n">output_data</span><span class="p">,</span>
-            <span class="n">confidence</span>
-        <span class="p">)</span>
-        
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s1">&#39;zone_id&#39;</span><span class="p">:</span> <span class="n">zone_id</span><span class="p">,</span>
-            <span class="s1">&#39;target_hour&#39;</span><span class="p">:</span> <span class="n">target_hour</span><span class="p">,</span>
-            <span class="s1">&#39;predicted_occupancy&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">final_prediction</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-            <span class="s1">&#39;confidence&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">confidence</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-            <span class="s1">&#39;weather_condition&#39;</span><span class="p">:</span> <span class="n">weather</span><span class="p">,</span>
-            <span class="s1">&#39;is_event_day&#39;</span><span class="p">:</span> <span class="n">is_event</span><span class="p">,</span>
-            <span class="s1">&#39;quality_patterns_used&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">similar_patterns</span><span class="p">),</span>
-            <span class="s1">&#39;mcp_inference_id&#39;</span><span class="p">:</span> <span class="n">receipt</span><span class="p">[</span><span class="s1">&#39;transaction_id&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">receipt</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="s1">&#39;prediction_time&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-        <span class="p">}</span>
-    
-    <span class="k">def</span> <span class="nf">_assess_pattern_quality</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_row</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Assess quality of historical patterns&quot;&quot;&quot;</span>
-        <span class="n">quality_score</span> <span class="o">=</span> <span class="mf">0.7</span>  <span class="c1"># Base score</span>
-        
-        <span class="c1"># Enhance score based on data characteristics</span>
-        <span class="k">if</span> <span class="n">data_row</span><span class="p">[</span><span class="s1">&#39;traffic_volume&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
-            <span class="n">quality_score</span> <span class="o">+=</span> <span class="mf">0.1</span>  <span class="c1"># High volume data is more reliable</span>
-        
-        <span class="k">if</span> <span class="n">data_row</span><span class="p">[</span><span class="s1">&#39;event_day&#39;</span><span class="p">]:</span>
-            <span class="n">quality_score</span> <span class="o">-=</span> <span class="mf">0.1</span>  <span class="c1"># Event days might be outliers</span>
-        
-        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">quality_score</span><span class="p">))</span>
-    
-    <span class="k">def</span> <span class="nf">_find_quality_patterns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zone_id</span><span class="p">,</span> <span class="n">target_hour</span><span class="p">,</span> <span class="n">weather</span><span class="p">,</span> <span class="n">is_event</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Find high-quality patterns for prediction&quot;&quot;&quot;</span>
-        <span class="n">pattern_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">zone_id</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">target_hour</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">weather</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">base_patterns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">knowledge_base</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pattern_key</span><span class="p">,</span> <span class="p">[])</span>
-        
-        <span class="c1"># Filter by event day match and quality</span>
-        <span class="n">quality_patterns</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">base_patterns</span> 
-            <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;is_event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">is_event</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;quality_score&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.6</span>
-        <span class="p">]</span>
-        
-        <span class="c1"># Sort by quality and return top patterns</span>
-        <span class="n">quality_patterns</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;quality_score&#39;</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">quality_patterns</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
-    
-    <span class="k">def</span> <span class="nf">generate_governed_predictions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate predictions with full MCP governance&quot;&quot;&quot;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎯 Generating MCP-governed predictions...&quot;</span><span class="p">)</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">build_knowledge_base</span><span class="p">()</span>
-        
-        <span class="n">zones</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ZONE_A&#39;</span><span class="p">,</span> <span class="s1">&#39;ZONE_B&#39;</span><span class="p">,</span> <span class="s1">&#39;ZONE_C&#39;</span><span class="p">,</span> <span class="s1">&#39;ZONE_D&#39;</span><span class="p">,</span> <span class="s1">&#39;ZONE_E&#39;</span><span class="p">]</span>
-        <span class="n">weather_conditions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sunny&#39;</span><span class="p">,</span> <span class="s1">&#39;Rainy&#39;</span><span class="p">,</span> <span class="s1">&#39;Cloudy&#39;</span><span class="p">]</span>
-        <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
-        
-        <span class="k">for</span> <span class="n">zone</span> <span class="ow">in</span> <span class="n">zones</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">hour</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">):</span>
-                <span class="n">weather</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">weather_conditions</span><span class="p">)</span>
-                <span class="n">is_event</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.1</span>
-                
-                <span class="n">prediction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_with_governance</span><span class="p">(</span><span class="n">zone</span><span class="p">,</span> <span class="n">hour</span><span class="p">,</span> <span class="n">weather</span><span class="p">,</span> <span class="n">is_event</span><span class="p">)</span>
-                <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="n">predictions</span>
 
-<span class="c1"># Initialize and run MCP-enhanced RAG predictor</span>
-<span class="n">rag_predictor</span> <span class="o">=</span> <span class="n">MCPEnhancedRAGPredictor</span><span class="p">(</span><span class="n">mcp</span><span class="p">)</span>
-<span class="n">governed_predictions</span> <span class="o">=</span> <span class="n">rag_predictor</span><span class="o">.</span><span class="n">generate_governed_predictions</span><span class="p">()</span>
+        <span class="n">schema</span> <span class="o">=</span> <span class="n">StructType</span><span class="p">([</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;zone_id&quot;</span><span class="p">,</span> <span class="n">StringType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;target_hour&quot;</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;predicted_occupancy&quot;</span><span class="p">,</span> <span class="n">DoubleType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;confidence&quot;</span><span class="p">,</span> <span class="n">DoubleType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;weather_condition&quot;</span><span class="p">,</span> <span class="n">StringType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;is_event_day&quot;</span><span class="p">,</span> <span class="n">BooleanType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;quality_patterns_used&quot;</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;mcp_inference_id&quot;</span><span class="p">,</span> <span class="n">StringType</span><span class="p">()),</span>
+            <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;prediction_time&quot;</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">())</span>
+        <span class="p">])</span>
+        <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;DROP TABLE IF EXISTS TrafficPredictions&quot;</span><span class="p">)</span>
+        <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;TrafficPredictions&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ RAG predictions saved: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="si">}</span><span class="s2"> records&quot;</span><span class="p">)</span>
 
-<span class="c1"># Save governed predictions</span>
-<span class="k">if</span> <span class="n">governed_predictions</span><span class="p">:</span>
-    <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;DROP TABLE IF EXISTS TrafficPredictions&quot;</span><span class="p">)</span>
-    <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        CREATE TABLE TrafficPredictions (</span>
-<span class="s2">            zone_id STRING,</span>
-<span class="s2">            target_hour INT,</span>
-<span class="s2">            predicted_occupancy DOUBLE,</span>
-<span class="s2">            confidence DOUBLE,</span>
-<span class="s2">            weather_condition STRING,</span>
-<span class="s2">            is_event_day BOOLEAN,</span>
-<span class="s2">            quality_patterns_used INT,</span>
-<span class="s2">            mcp_inference_id STRING,</span>
-<span class="s2">            prediction_time TIMESTAMP</span>
-<span class="s2">        ) USING DELTA</span>
-<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
-    
-    <span class="n">predictions_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">governed_predictions</span><span class="p">)</span>
-    <span class="n">predictions_df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;append&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;TrafficPredictions&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Saved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">governed_predictions</span><span class="p">)</span><span class="si">}</span><span class="s2"> MCP-governed predictions&quot;</span><span class="p">)</span>
+<span class="n">MCPEnhancedRAGPredictor</span><span class="p">(</span><span class="n">mcp</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
 
-<span class="c1"># =============================================================================</span>
-<span class="c1"># STEP 5: MCP System Performance Analysis</span>
-<span class="c1"># =============================================================================</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📈 STEP 5: MCP SYSTEM PERFORMANCE ANALYSIS...&quot;</span><span class="p">)</span>
-
-<span class="c1"># Model Registry Analysis</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">model_performance</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        SELECT </span>
-<span class="s2">            model_type,</span>
-<span class="s2">            COUNT(*) as model_count,</span>
-<span class="s2">            AVG(CAST(JSON_EXTRACT(performance_metrics, &#39;$.accuracy&#39;) AS DOUBLE)) as avg_accuracy,</span>
-<span class="s2">            AVG(CAST(JSON_EXTRACT(performance_metrics, &#39;$.precision&#39;) AS DOUBLE)) as avg_precision,</span>
-<span class="s2">            status,</span>
-<span class="s2">            COUNT(DISTINCT blockchain_tx_id) as blockchain_registered</span>
-<span class="s2">        FROM ModelRegistry</span>
-<span class="s2">        GROUP BY model_type, status</span>
-<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
-    
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚖️ MCP MODEL REGISTRY ANALYSIS:&quot;</span><span class="p">)</span>
-    <span class="n">model_performance</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Error in model registry analysis: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Inference Audit Trail</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">inference_stats</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        SELECT </span>
-<span class="s2">            COUNT(*) as total_inferences,</span>
-<span class="s2">            COUNT(DISTINCT mcp_inference_id) as blockchain_audited,</span>
-<span class="s2">            AVG(processing_confidence) as avg_confidence</span>
-<span class="s2">        FROM YOLOProcessedData</span>
-<span class="s2">        WHERE mcp_inference_id IS NOT NULL</span>
-<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-    
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📝 MCP INFERENCE AUDIT TRAIL:&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Total Inferences: </span><span class="si">{</span><span class="n">inference_stats</span><span class="p">[</span><span class="s1">&#39;total_inferences&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Blockchain Audited: </span><span class="si">{</span><span class="n">inference_stats</span><span class="p">[</span><span class="s1">&#39;blockchain_audited&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Average Confidence: </span><span class="si">{</span><span class="n">inference_stats</span><span class="p">[</span><span class="s1">&#39;avg_confidence&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Error in inference audit: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># =============================================================================</span>
+<span class="c1"># =============================================================</span>
 <span class="c1"># FINAL SUMMARY</span>
-<span class="c1"># =============================================================================</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎉 AI PROCESSING WITH MCP GOVERNANCE COMPLETED!&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 MCP SYSTEM STATUS:&quot;</span><span class="p">)</span>
-<span class="n">mcp_tables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ModelRegistry&quot;</span><span class="p">,</span> <span class="s2">&quot;YOLOProcessedData&quot;</span><span class="p">,</span> <span class="s2">&quot;TrafficPredictions&quot;</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">mcp_tables</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">count</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SELECT COUNT(*) as cnt FROM </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;cnt&#39;</span><span class="p">]</span>
-        <span class="n">blockchain_count</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SELECT COUNT(DISTINCT blockchain_tx_id) as cnt FROM </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2"> WHERE blockchain_tx_id IS NOT NULL&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;cnt&#39;</span><span class="p">]</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> records (</span><span class="si">{</span><span class="n">blockchain_count</span><span class="si">}</span><span class="s2"> blockchain-verified)&quot;</span><span class="p">)</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">: Not available&quot;</span><span class="p">)</span>
+<span class="c1"># =============================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🎉 AI PROCESSING WITH MCP FIXED — COMPLETED!&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ModelRegistry&quot;</span><span class="p">,</span> <span class="s2">&quot;YOLOProcessedData&quot;</span><span class="p">,</span> <span class="s2">&quot;TrafficPredictions&quot;</span><span class="p">]:</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SELECT COUNT(*) as c FROM </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2"> records ✅&quot;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ NEXT STEP: Run Notebook 3 for Power BI Dashboard &amp; Advanced Analytics&quot;</span><span class="p">)</span>
 </pre></div>
@@ -16069,7 +15773,7 @@ only showing top 10 rows
 
 
 <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>StatementMeta(, 940ad40c-2481-4b20-988f-eb2d6206876e, 4, Finished, Available, Finished)</pre>
+<pre>StatementMeta(, 6567c35f-58d6-4f57-83cb-26ca312844cb, 3, Finished, Available, Finished)</pre>
 </div>
 
 </div>
@@ -16079,210 +15783,31 @@ only showing top 10 rows
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>🤖 REIMAGE-AI SMART PARKING - AI PROCESSING WITH MCP
+<pre>🤖 REIMAGE-AI SMART PARKING - AI PROCESSING WITH MCP (FIXED)
 ⚙️ Re-initializing Hedera Blockchain Manager...
 🔐 Hedera Manager initialized (Test Mode)
-⚖️ STEP 1: MODEL CONTEXT PROTOCOL (MCP) IMPLEMENTATION...
+⚖️ STEP 1: MODEL CONTEXT PROTOCOL (MCP)...
 ✅ MCP initialized with Hedera integration
 
-
-📝 STEP 2: REGISTERING AI MODELS WITH MCP GOVERNANCE...
-🔧 Registering models with full governance...
+📝 Registering Models with MCP...
 ✅ Registered model YOLO_Parking_Detection_v2.1
 ✅ Registered model Traffic_Prediction_RAG_v1.2
-✅ Registered model Parking_Occupancy_Predictor_v1.1
-
-🚀 DEPLOYING MODELS...
-⚠️ Registry save error: [_LEGACY_ERROR_TEMP_DELTA_0007] A schema mismatch detected when writing to the Delta table (Table ID: ebfcf1a1-0164-441d-b9a6-865807dfa239).
-To enable schema migration using DataFrameWriter or DataStreamWriter, please set:
-&#39;.option(&#34;mergeSchema&#34;, &#34;true&#34;)&#39;.
-For other operations, set the session configuration
-spark.databricks.delta.schema.autoMerge.enabled to &#34;true&#34;. See the documentation
-specific to the operation for details.
-
-Table schema:
-root
--- blockchain_tx_id: string (nullable = true)
--- description: string (nullable = true)
--- last_updated: timestamp (nullable = true)
--- model_hash: string (nullable = true)
--- model_id: string (nullable = true)
--- model_name: string (nullable = true)
--- model_type: string (nullable = true)
--- performance_metrics: map (nullable = true)
-    |-- key: string
-    |-- value: double (valueContainsNull = true)
--- registered_date: timestamp (nullable = true)
--- status: string (nullable = true)
--- version: string (nullable = true)
-
-
-Data schema:
-root
--- blockchain_tx_id: string (nullable = true)
--- deployed_date: timestamp (nullable = true)
--- description: string (nullable = true)
--- last_updated: timestamp (nullable = true)
--- model_hash: string (nullable = true)
--- model_id: string (nullable = true)
--- model_name: string (nullable = true)
--- model_type: string (nullable = true)
--- performance_metrics: map (nullable = true)
-    |-- key: string
-    |-- value: double (valueContainsNull = true)
--- registered_date: timestamp (nullable = true)
--- status: string (nullable = true)
--- version: string (nullable = true)
-
-         
 🚀 Deployed YOLO_Parking_Detection_v2.1 → PRODUCTION
-⚠️ Registry save error: [_LEGACY_ERROR_TEMP_DELTA_0007] A schema mismatch detected when writing to the Delta table (Table ID: ebfcf1a1-0164-441d-b9a6-865807dfa239).
-To enable schema migration using DataFrameWriter or DataStreamWriter, please set:
-&#39;.option(&#34;mergeSchema&#34;, &#34;true&#34;)&#39;.
-For other operations, set the session configuration
-spark.databricks.delta.schema.autoMerge.enabled to &#34;true&#34;. See the documentation
-specific to the operation for details.
-
-Table schema:
-root
--- blockchain_tx_id: string (nullable = true)
--- description: string (nullable = true)
--- last_updated: timestamp (nullable = true)
--- model_hash: string (nullable = true)
--- model_id: string (nullable = true)
--- model_name: string (nullable = true)
--- model_type: string (nullable = true)
--- performance_metrics: map (nullable = true)
-    |-- key: string
-    |-- value: double (valueContainsNull = true)
--- registered_date: timestamp (nullable = true)
--- status: string (nullable = true)
--- version: string (nullable = true)
-
-
-Data schema:
-root
--- blockchain_tx_id: string (nullable = true)
--- deployed_date: timestamp (nullable = true)
--- description: string (nullable = true)
--- last_updated: timestamp (nullable = true)
--- model_hash: string (nullable = true)
--- model_id: string (nullable = true)
--- model_name: string (nullable = true)
--- model_type: string (nullable = true)
--- performance_metrics: map (nullable = true)
-    |-- key: string
-    |-- value: double (valueContainsNull = true)
--- registered_date: timestamp (nullable = true)
--- status: string (nullable = true)
--- version: string (nullable = true)
-
-         
 🚀 Deployed Traffic_Prediction_RAG_v1.2 → STAGING
-⚠️ Registry save error: [_LEGACY_ERROR_TEMP_DELTA_0007] A schema mismatch detected when writing to the Delta table (Table ID: ebfcf1a1-0164-441d-b9a6-865807dfa239).
-To enable schema migration using DataFrameWriter or DataStreamWriter, please set:
-&#39;.option(&#34;mergeSchema&#34;, &#34;true&#34;)&#39;.
-For other operations, set the session configuration
-spark.databricks.delta.schema.autoMerge.enabled to &#34;true&#34;. See the documentation
-specific to the operation for details.
 
-Table schema:
-root
--- blockchain_tx_id: string (nullable = true)
--- description: string (nullable = true)
--- last_updated: timestamp (nullable = true)
--- model_hash: string (nullable = true)
--- model_id: string (nullable = true)
--- model_name: string (nullable = true)
--- model_type: string (nullable = true)
--- performance_metrics: map (nullable = true)
-    |-- key: string
-    |-- value: double (valueContainsNull = true)
--- registered_date: timestamp (nullable = true)
--- status: string (nullable = true)
--- version: string (nullable = true)
+🖼️ STEP 3: YOLO PROCESSING WITH MCP (FIXED)...
+✅ YOLO processed: 10 records
 
+🔮 STEP 4: RAG PREDICTIONS WITH MCP (FIXED)...
+✅ RAG predictions saved: 72 records
 
-Data schema:
-root
--- blockchain_tx_id: string (nullable = true)
--- deployed_date: timestamp (nullable = true)
--- description: string (nullable = true)
--- last_updated: timestamp (nullable = true)
--- model_hash: string (nullable = true)
--- model_id: string (nullable = true)
--- model_name: string (nullable = true)
--- model_type: string (nullable = true)
--- performance_metrics: map (nullable = true)
-    |-- key: string
-    |-- value: double (valueContainsNull = true)
--- registered_date: timestamp (nullable = true)
--- status: string (nullable = true)
--- version: string (nullable = true)
+🎉 AI PROCESSING WITH MCP FIXED — COMPLETED!
+   ModelRegistry: 7 records ✅
+   YOLOProcessedData: 10 records ✅
+   TrafficPredictions: 72 records ✅
 
-         
-🚀 Deployed Parking_Occupancy_Predictor_v1.1 → DEVELOPMENT
-
-🖼️ STEP 3: ENHANCED YOLO PROCESSING WITH MCP...
-🎯 Processing traffic images with MCP governance...
-❌ Error in MCP-enhanced processing: [DELTA_FAILED_TO_MERGE_FIELDS] Failed to merge fields &#39;original_vehicle_count&#39; and &#39;original_vehicle_count&#39;
-
-🔮 STEP 4: RAG PREDICTIONS WITH MCP GOVERNANCE...
-🎯 Generating MCP-governed predictions...
-📚 Building MCP-governed knowledge base...
-✅ Knowledge base built with 269 patterns
+✅ NEXT STEP: Run Notebook 3 for Power BI Dashboard &amp; Advanced Analytics
 </pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AnalysisException</span>                         Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[11], line 490</span>
-<span class="ansi-green-intense-fg ansi-bold">    475</span>     spark<span style="color: rgb(98,98,98)">.</span>sql(<span style="color: rgb(175,0,0)">&#34;&#34;&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">    476</span> <span style="color: rgb(175,0,0)">        CREATE TABLE TrafficPredictions (</span>
-<span class="ansi-green-intense-fg ansi-bold">    477</span> <span style="color: rgb(175,0,0)">            zone_id STRING,</span>
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-intense-fg ansi-bold">    486</span> <span style="color: rgb(175,0,0)">        ) USING DELTA</span>
-<span class="ansi-green-intense-fg ansi-bold">    487</span> <span style="color: rgb(175,0,0)">    </span><span style="color: rgb(175,0,0)">&#34;&#34;&#34;</span>)
-<span class="ansi-green-intense-fg ansi-bold">    489</span>     predictions_df <span style="color: rgb(98,98,98)">=</span> spark<span style="color: rgb(98,98,98)">.</span>createDataFrame(governed_predictions)
-<span class="ansi-green-fg">--&gt; 490</span>     predictions_df<span style="color: rgb(98,98,98)">.</span>write<span style="color: rgb(98,98,98)">.</span>mode(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">append</span><span style="color: rgb(175,0,0)">&#34;</span>)<span style="color: rgb(98,98,98)">.</span>format(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">delta</span><span style="color: rgb(175,0,0)">&#34;</span>)<span style="color: rgb(98,98,98)">.</span>saveAsTable(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">TrafficPredictions</span><span style="color: rgb(175,0,0)">&#34;</span>)
-<span class="ansi-green-intense-fg ansi-bold">    491</span>     <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">f</span><span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">✅ Saved </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span><span style="color: rgb(0,135,0)">len</span>(governed_predictions)<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span style="color: rgb(175,0,0)"> MCP-governed predictions</span><span style="color: rgb(175,0,0)">&#34;</span>)
-<span class="ansi-green-intense-fg ansi-bold">    493</span> <span style="color: rgb(95,135,135)"># =============================================================================</span>
-<span class="ansi-green-intense-fg ansi-bold">    494</span> <span style="color: rgb(95,135,135)"># STEP 5: MCP System Performance Analysis</span>
-<span class="ansi-green-intense-fg ansi-bold">    495</span> <span style="color: rgb(95,135,135)"># =============================================================================</span>
-
-File <span class="ansi-green-fg">/opt/spark/python/lib/pyspark.zip/pyspark/sql/readwriter.py:1586</span>, in <span class="ansi-cyan-fg">DataFrameWriter.saveAsTable</span><span class="ansi-blue-fg">(self, name, format, mode, partitionBy, **options)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1584</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">format</span> <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
-<span class="ansi-green-intense-fg ansi-bold">   1585</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>format(<span style="color: rgb(0,135,0)">format</span>)
-<span class="ansi-green-fg">-&gt; 1586</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_jwrite<span style="color: rgb(98,98,98)">.</span>saveAsTable(name)
-
-File <span class="ansi-green-fg">~/cluster-env/trident_env/lib/python3.11/site-packages/py4j/java_gateway.py:1322</span>, in <span class="ansi-cyan-fg">JavaMember.__call__</span><span class="ansi-blue-fg">(self, *args)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1316</span> command <span style="color: rgb(98,98,98)">=</span> proto<span style="color: rgb(98,98,98)">.</span>CALL_COMMAND_NAME <span style="color: rgb(98,98,98)">+</span>\
-<span class="ansi-green-intense-fg ansi-bold">   1317</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>command_header <span style="color: rgb(98,98,98)">+</span>\
-<span class="ansi-green-intense-fg ansi-bold">   1318</span>     args_command <span style="color: rgb(98,98,98)">+</span>\
-<span class="ansi-green-intense-fg ansi-bold">   1319</span>     proto<span style="color: rgb(98,98,98)">.</span>END_COMMAND_PART
-<span class="ansi-green-intense-fg ansi-bold">   1321</span> answer <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>gateway_client<span style="color: rgb(98,98,98)">.</span>send_command(command)
-<span class="ansi-green-fg">-&gt; 1322</span> return_value <span style="color: rgb(98,98,98)">=</span> get_return_value(
-<span class="ansi-green-intense-fg ansi-bold">   1323</span>     answer, <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>gateway_client, <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>target_id, <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>name)
-<span class="ansi-green-intense-fg ansi-bold">   1325</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> temp_arg <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> temp_args:
-<span class="ansi-green-intense-fg ansi-bold">   1326</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">hasattr</span>(temp_arg, <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">_detach</span><span style="color: rgb(175,0,0)">&#34;</span>):
-
-File <span class="ansi-green-fg">/opt/spark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py:185</span>, in <span class="ansi-cyan-fg">capture_sql_exception.&lt;locals&gt;.deco</span><span class="ansi-blue-fg">(*a, **kw)</span>
-<span class="ansi-green-intense-fg ansi-bold">    181</span> converted <span style="color: rgb(98,98,98)">=</span> convert_exception(e<span style="color: rgb(98,98,98)">.</span>java_exception)
-<span class="ansi-green-intense-fg ansi-bold">    182</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">isinstance</span>(converted, UnknownException):
-<span class="ansi-green-intense-fg ansi-bold">    183</span>     <span style="color: rgb(95,135,135)"># Hide where the exception came from that shows a non-Pythonic</span>
-<span class="ansi-green-intense-fg ansi-bold">    184</span>     <span style="color: rgb(95,135,135)"># JVM exception message.</span>
-<span class="ansi-green-fg">--&gt; 185</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> converted <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
-<span class="ansi-green-intense-fg ansi-bold">    186</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
-<span class="ansi-green-intense-fg ansi-bold">    187</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
-
-<span class="ansi-red-fg">AnalysisException</span>: [DELTA_FAILED_TO_MERGE_FIELDS] Failed to merge fields &#39;target_hour&#39; and &#39;target_hour&#39;</pre>
 </div>
 </div>
 
