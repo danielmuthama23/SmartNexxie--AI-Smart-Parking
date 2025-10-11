@@ -15104,7 +15104,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div id="cell-id=339a19e1" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div id="cell-id=77e8fe17" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15432,6 +15432,249 @@ Reimage-AI-Smart-Parking.ParkingDataLakehouse.dbo
 
 </div>
 
+</div>
+
+</div>
+<div id="cell-id=acc1f487-697d-466a-a8c7-872c2f8075db" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="ENHANCED-IMPLEMENTATION-WITH-HEDERA,-MCP-&amp;-POWER-BI">ENHANCED IMPLEMENTATION WITH HEDERA, MCP &amp; POWER BI<a class="anchor-link" href="#ENHANCED-IMPLEMENTATION-WITH-HEDERA,-MCP-&amp;-POWER-BI">&#182;</a></h4>
+</div>
+</div>
+</div>
+</div><div id="cell-id=c0b2a37c-bf50-4ba1-bfa3-d1f1659abc3d" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython"><pre><span></span><span class="c1"># ==============================================</span>
+<span class="c1"># 📊 FIXED: POWER BI DASHBOARD &amp; ADVANCED ANALYTICS</span>
+<span class="c1"># ==============================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📊 REIMAGE-AI SMART PARKING - POWER BI DASHBOARD &amp; ADVANCED ANALYTICS&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Ensure table exists and add missing columns if required</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">spark</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s2">&quot;TrafficPredictions&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&quot;mcp_inference_id&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚙️ Adding missing column: mcp_inference_id to TrafficPredictions...&quot;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s2">&quot;TrafficPredictions&quot;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;mcp_inference_id&quot;</span><span class="p">,</span> <span class="n">lit</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">))</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;TrafficPredictions&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Could not verify columns: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">SafePowerBIDataEngine</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="nf">safe_float</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">default</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">default</span>
+
+    <span class="k">def</span> <span class="nf">generate_real_time_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🔄 Generating real-time Power BI metrics...&quot;</span><span class="p">)</span>
+        <span class="n">metrics</span><span class="p">,</span> <span class="n">now</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+        <span class="c1"># === Blockchain &amp; MCP Metrics (Fixed) ===</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Ensure table has mcp_inference_id</span>
+            <span class="n">blockchain_metrics</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT </span>
+<span class="s2">                    COUNT(*) as total_tx,</span>
+<span class="s2">                    COUNT(DISTINCT blockchain_tx_id) as unique_tx,</span>
+<span class="s2">                    AVG(CASE WHEN blockchain_verified = true THEN 1.0 ELSE 0.0 END) as verified_rate</span>
+<span class="s2">                FROM ParkingSensorData</span>
+<span class="s2">                WHERE blockchain_tx_id IS NOT NULL</span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="s2">&quot;mcp_inference_id&quot;</span> <span class="ow">in</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">spark</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s2">&quot;TrafficPredictions&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">fields</span><span class="p">]:</span>
+                <span class="n">mcp_metrics</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    SELECT </span>
+<span class="s2">                        COUNT(DISTINCT mcp_inference_id) as audited,</span>
+<span class="s2">                        COUNT(*) as total</span>
+<span class="s2">                    FROM TrafficPredictions</span>
+<span class="s2">                    WHERE mcp_inference_id IS NOT NULL</span>
+<span class="s2">                &quot;&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mcp_metrics</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;audited&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+            <span class="n">verified_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">safe_float</span><span class="p">(</span><span class="n">blockchain_metrics</span><span class="p">[</span><span class="s2">&quot;verified_rate&quot;</span><span class="p">])</span>
+            <span class="n">audit_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">safe_float</span><span class="p">(</span><span class="n">mcp_metrics</span><span class="p">[</span><span class="s2">&quot;audited&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">safe_float</span><span class="p">(</span><span class="n">mcp_metrics</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">metrics</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;metric_id&quot;</span><span class="p">:</span> <span class="s2">&quot;blockchain_verification_rate&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;metric_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Blockchain Verification Rate&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;metric_value&quot;</span><span class="p">:</span> <span class="n">verified_rate</span><span class="p">,</span>
+                <span class="s2">&quot;metric_timestamp&quot;</span><span class="p">:</span> <span class="n">now</span><span class="p">,</span>
+                <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;Blockchain Security&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;zone_id&quot;</span><span class="p">:</span> <span class="s2">&quot;SYSTEM_WIDE&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;data_source&quot;</span><span class="p">:</span> <span class="s2">&quot;Hedera Network&quot;</span>
+            <span class="p">})</span>
+            <span class="n">metrics</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;metric_id&quot;</span><span class="p">:</span> <span class="s2">&quot;mcp_audit_coverage&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;metric_name&quot;</span><span class="p">:</span> <span class="s2">&quot;MCP Audit Coverage&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;metric_value&quot;</span><span class="p">:</span> <span class="n">audit_rate</span><span class="p">,</span>
+                <span class="s2">&quot;metric_timestamp&quot;</span><span class="p">:</span> <span class="n">now</span><span class="p">,</span>
+                <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;Model Governance&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;zone_id&quot;</span><span class="p">:</span> <span class="s2">&quot;SYSTEM_WIDE&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;data_source&quot;</span><span class="p">:</span> <span class="s2">&quot;MCP System&quot;</span>
+            <span class="p">})</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Error in blockchain/MCP metrics: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># === Business Metrics (Fixed for NoneType) ===</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT AVG(CASE WHEN occupancy_status = true THEN 1.0 ELSE 0.0 END) AS occ</span>
+<span class="s2">                FROM ParkingSensorData</span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">occ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">safe_float</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;occ&quot;</span><span class="p">])</span>
+            <span class="n">est_rev</span> <span class="o">=</span> <span class="n">occ</span> <span class="o">*</span> <span class="mi">500</span> <span class="o">*</span> <span class="mf">2.5</span>
+            <span class="n">metrics</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;metric_id&quot;</span><span class="p">:</span> <span class="s2">&quot;estimated_revenue&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;metric_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Estimated Hourly Revenue&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;metric_value&quot;</span><span class="p">:</span> <span class="n">est_rev</span><span class="p">,</span>
+                <span class="s2">&quot;metric_timestamp&quot;</span><span class="p">:</span> <span class="n">now</span><span class="p">,</span>
+                <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;Business Intelligence&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;zone_id&quot;</span><span class="p">:</span> <span class="s2">&quot;CITY_WIDE&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;data_source&quot;</span><span class="p">:</span> <span class="s2">&quot;Revenue Analytics&quot;</span>
+            <span class="p">})</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Error in business metrics: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">metrics</span>
+
+    <span class="k">def</span> <span class="nf">safe_collect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">rows</span> <span class="k">if</span> <span class="n">rows</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+<span class="n">pbi</span> <span class="o">=</span> <span class="n">SafePowerBIDataEngine</span><span class="p">()</span>
+
+<span class="c1"># === Generate Metrics ===</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;💾 Saving Power BI optimized metrics...&quot;</span><span class="p">)</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">pbi</span><span class="o">.</span><span class="n">generate_real_time_metrics</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">metrics</span><span class="p">:</span>
+    <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;PowerBI_Metrics&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Saved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span><span class="si">}</span><span class="s2"> Power BI metrics&quot;</span><span class="p">)</span>
+
+<span class="c1"># === Advanced Insights (with safety) ===</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔍 STEP 3: ADVANCED ANALYTICS &amp; INSIGHTS...&quot;</span><span class="p">)</span>
+<span class="n">insights</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">safe_get</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;N/A&quot;</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">default</span>
+
+<span class="c1"># Peak Hours Analysis</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="n">pbi</span><span class="o">.</span><span class="n">safe_collect</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    SELECT HOUR(timestamp) AS hr, AVG(CASE WHEN occupancy_status THEN 1 ELSE 0 END) AS rate</span>
+<span class="s2">    FROM ParkingSensorData GROUP BY hr ORDER BY rate DESC LIMIT 3</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">rows</span><span class="p">:</span>
+    <span class="n">insights</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Peak Hours&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Highest parking at </span><span class="si">{</span><span class="n">safe_get</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;hr&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">:00 (</span><span class="si">{</span><span class="n">safe_get</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;rate&#39;</span><span class="p">)</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="p">})</span>
+
+<span class="c1"># AI System Health</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">ai</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;SELECT AVG(processing_confidence) AS conf, COUNT(*) AS cnt FROM YOLOProcessedData&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">conf</span> <span class="o">=</span> <span class="n">pbi</span><span class="o">.</span><span class="n">safe_float</span><span class="p">(</span><span class="n">ai</span><span class="p">[</span><span class="s2">&quot;conf&quot;</span><span class="p">])</span>
+    <span class="n">health</span> <span class="o">=</span> <span class="s2">&quot;HEALTHY&quot;</span> <span class="k">if</span> <span class="n">conf</span> <span class="o">&gt;=</span> <span class="mf">0.85</span> <span class="k">else</span> <span class="s2">&quot;DEGRADED&quot;</span>
+    <span class="n">insights</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;AI System Health&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;AI </span><span class="si">{</span><span class="n">health</span><span class="si">}</span><span class="s2">, avg confidence </span><span class="si">{</span><span class="n">conf</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">})</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Error in AI health: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">💡 ADVANCED INSIGHTS GENERATED: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">insights</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">insights</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔍 </span><span class="si">{</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ FIXED DASHBOARD EXECUTION COMPLETED SUCCESSFULLY&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>StatementMeta(, 9997134e-9f4b-4486-89c2-da64b508e186, 4, Finished, Available, Finished)</pre>
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>📊 REIMAGE-AI SMART PARKING - POWER BI DASHBOARD &amp; ADVANCED ANALYTICS
+💾 Saving Power BI optimized metrics...
+🔄 Generating real-time Power BI metrics...
+✅ Saved 3 Power BI metrics
+
+🔍 STEP 3: ADVANCED ANALYTICS &amp; INSIGHTS...
+
+💡 ADVANCED INSIGHTS GENERATED: 2
+🔍 Peak Hours - Highest parking at 11:00 (100.0%)
+🔍 AI System Health - AI DEGRADED, avg confidence 0.0%
+
+✅ FIXED DASHBOARD EXECUTION COMPLETED SUCCESSFULLY
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div id="cell-id=06f6270f-ce84-4cf4-9d2d-3b32ba861bfa" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython"><pre><span></span>
+</pre></div>
+
+     </div>
+</div>
+</div>
 </div>
 
 </div>

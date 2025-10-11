@@ -15104,7 +15104,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div id="cell-id=c67ff829" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div id="cell-id=bed2c8d7" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15612,6 +15612,629 @@ Historical Data Quality:
    1. Run Notebook 2: AI Processing &amp; Predictions
    2. Run Notebook 3: Monitoring &amp; Dashboard
    3. Explore data in Lakehouse tables
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div id="cell-id=06371be1-cbe0-4d1d-8f53-3159269f00e3" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="ENHANCED-IMPLEMENTATION-WITH-HEDERA,-MCP-&amp;-POWER-BI">ENHANCED IMPLEMENTATION WITH HEDERA, MCP &amp; POWER BI<a class="anchor-link" href="#ENHANCED-IMPLEMENTATION-WITH-HEDERA,-MCP-&amp;-POWER-BI">&#182;</a></h4>
+</div>
+</div>
+</div>
+</div><div id="cell-id=5d1bed84-80f5-48af-9344-0fe3161ab9e6" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython"><pre><span></span><span class="c1"># =============================================================</span>
+<span class="c1"># 🚀 REIMAGE-AI SMART PARKING - WITH HEDERA BLOCKCHAIN</span>
+<span class="c1"># =============================================================</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🚀 REIMAGE-AI SMART PARKING - WITH HEDERA BLOCKCHAIN&quot;</span><span class="p">)</span>
+
+<span class="c1"># =============================================================</span>
+<span class="c1"># STEP 1: Verify Lakehouse Connection</span>
+<span class="c1"># =============================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🔧 STEP 1: VERIFYING LAKEHOUSE CONNECTION...&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">tables</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;SHOW TABLES&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Lakehouse connected! Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span><span class="si">}</span><span class="s2"> tables&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ No Lakehouse attached! Please attach a Lakehouse manually before running.&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="n">e</span>
+
+
+<span class="c1"># =============================================================</span>
+<span class="c1"># STEP 2: Install Required Packages</span>
+<span class="c1"># =============================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📦 STEP 2: INSTALLING REQUIRED PACKAGES...&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="o">%</span><span class="k">pip</span> install faker hedera-sdk-py python-dotenv cryptography
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Packages installed successfully&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️  Package installation note: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># =============================================================</span>
+<span class="c1"># STEP 3: Initialize Hedera Blockchain Manager</span>
+<span class="c1"># =============================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">⛓️ STEP 3: INITIALIZING HEDERA BLOCKCHAIN INTEGRATION...&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">faker</span> <span class="kn">import</span> <span class="n">Faker</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># ---- Custom JSON encoder for datetime ----</span>
+<span class="k">class</span> <span class="nc">EnhancedJSONEncoder</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONEncoder</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="p">(</span><span class="n">datetime</span><span class="p">,</span> <span class="n">date</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">HederaBlockchainManager</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hedera_config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;testnet_account_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.12345&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;testnet_private_key&quot;</span><span class="p">:</span> <span class="s2">&quot;302e...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;topic_id&quot;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">}</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🔐 Hedera Manager Initialized (Test Mode)&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">calculate_data_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">data_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">EnhancedJSONEncoder</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">data_str</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">simulate_hedera_transaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">transaction_type</span><span class="o">=</span><span class="s2">&quot;DATA_STORAGE&quot;</span><span class="p">):</span>
+        <span class="n">data_hash</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_data_hash</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+        <span class="n">receipt</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;transaction_id&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;0.0.</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data_hash&quot;</span><span class="p">:</span> <span class="n">data_hash</span><span class="p">,</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+            <span class="s2">&quot;transaction_type&quot;</span><span class="p">:</span> <span class="n">transaction_type</span><span class="p">,</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;SUCCESS&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;consensus_timestamp&quot;</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+            <span class="s2">&quot;topic_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.456789&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;blockchain_verified&quot;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">}</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔗 Simulated Hedera Transaction </span><span class="si">{</span><span class="n">receipt</span><span class="p">[</span><span class="s1">&#39;transaction_id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">receipt</span>
+
+    <span class="k">def</span> <span class="nf">store_on_blockchain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">transaction_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="n">metadata</span> <span class="ow">or</span> <span class="p">{},</span>
+                <span class="s2">&quot;storage_timestamp&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+                <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;parking_sensor&quot;</span> <span class="k">if</span> <span class="s2">&quot;sensor_id&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="s2">&quot;traffic_data&quot;</span>
+            <span class="p">}</span>
+            <span class="n">receipt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulate_hedera_transaction</span><span class="p">(</span><span class="n">transaction_data</span><span class="p">)</span>
+            <span class="n">data_with_proof</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">data_with_proof</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                <span class="s2">&quot;blockchain_tx_id&quot;</span><span class="p">:</span> <span class="n">receipt</span><span class="p">[</span><span class="s2">&quot;transaction_id&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;data_hash&quot;</span><span class="p">:</span> <span class="n">receipt</span><span class="p">[</span><span class="s2">&quot;data_hash&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;blockchain_verified&quot;</span><span class="p">:</span> <span class="n">receipt</span><span class="p">[</span><span class="s2">&quot;blockchain_verified&quot;</span><span class="p">]</span>
+            <span class="p">})</span>
+            <span class="k">return</span> <span class="n">data_with_proof</span><span class="p">,</span> <span class="n">receipt</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Blockchain storage error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="kc">None</span>
+
+<span class="n">hedera_manager</span> <span class="o">=</span> <span class="n">HederaBlockchainManager</span><span class="p">()</span>
+
+
+<span class="c1"># =============================================================</span>
+<span class="c1"># STEP 4: Create Enhanced Tables with Blockchain Fields</span>
+<span class="c1"># =============================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📋 STEP 4: CREATING ENHANCED TABLES WITH BLOCKCHAIN FIELDS...&quot;</span><span class="p">)</span>
+
+<span class="n">tables_to_clean</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;ParkingSensorData&quot;</span><span class="p">,</span> <span class="s2">&quot;TrafficCameraData&quot;</span><span class="p">,</span> <span class="s2">&quot;HistoricalTraffic&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BlockchainTransactions&quot;</span><span class="p">,</span> <span class="s2">&quot;ModelRegistry&quot;</span><span class="p">,</span> <span class="s2">&quot;PowerBI_Metrics&quot;</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tables_to_clean</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DROP TABLE IF EXISTS </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Dropped table: </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ️  Could not drop </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">tables_sql</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;ParkingSensorData&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        CREATE TABLE ParkingSensorData (</span>
+<span class="s2">            sensor_id STRING,</span>
+<span class="s2">            timestamp TIMESTAMP,</span>
+<span class="s2">            occupancy_status BOOLEAN,</span>
+<span class="s2">            vehicle_count INT,</span>
+<span class="s2">            temperature DOUBLE,</span>
+<span class="s2">            vibration_level DOUBLE,</span>
+<span class="s2">            location STRING,</span>
+<span class="s2">            parking_zone STRING,</span>
+<span class="s2">            transaction_hash STRING,</span>
+<span class="s2">            blockchain_tx_id STRING,</span>
+<span class="s2">            data_hash STRING,</span>
+<span class="s2">            blockchain_verified BOOLEAN</span>
+<span class="s2">        ) USING DELTA</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TrafficCameraData&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        CREATE TABLE TrafficCameraData (</span>
+<span class="s2">            camera_id STRING,</span>
+<span class="s2">            timestamp TIMESTAMP,</span>
+<span class="s2">            image_url STRING,</span>
+<span class="s2">            vehicle_count INT,</span>
+<span class="s2">            traffic_density DOUBLE,</span>
+<span class="s2">            average_speed INT,</span>
+<span class="s2">            congestion_level STRING,</span>
+<span class="s2">            processed BOOLEAN,</span>
+<span class="s2">            yolo_results STRING,</span>
+<span class="s2">            blockchain_tx_id STRING,</span>
+<span class="s2">            data_hash STRING,</span>
+<span class="s2">            blockchain_verified BOOLEAN</span>
+<span class="s2">        ) USING DELTA</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HistoricalTraffic&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        CREATE TABLE HistoricalTraffic (</span>
+<span class="s2">            zone_id STRING,</span>
+<span class="s2">            date DATE,</span>
+<span class="s2">            hour INT,</span>
+<span class="s2">            average_occupancy DOUBLE,</span>
+<span class="s2">            traffic_volume INT,</span>
+<span class="s2">            weather_condition STRING,</span>
+<span class="s2">            event_day BOOLEAN,</span>
+<span class="s2">            data_hash STRING</span>
+<span class="s2">        ) USING DELTA</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PowerBI_Metrics&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        CREATE TABLE PowerBI_Metrics (</span>
+<span class="s2">            metric_id STRING,</span>
+<span class="s2">            metric_name STRING,</span>
+<span class="s2">            metric_value DOUBLE,</span>
+<span class="s2">            metric_timestamp TIMESTAMP,</span>
+<span class="s2">            category STRING,</span>
+<span class="s2">            zone_id STRING,</span>
+<span class="s2">            data_source STRING</span>
+<span class="s2">        ) USING DELTA</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">sql_stmt</span> <span class="ow">in</span> <span class="n">tables_sql</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="n">sql_stmt</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Created: </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎉 Enhanced tables created successfully!&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># =============================================================</span>
+<span class="c1"># STEP 5: Generate Synthetic Data with Blockchain Integration</span>
+<span class="c1"># =============================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🚀 STEP 5: GENERATING SYNTHETIC DATA WITH BLOCKCHAIN...&quot;</span><span class="p">)</span>
+
+<span class="n">fake</span> <span class="o">=</span> <span class="n">Faker</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">generate_parking_data</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">locations</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Downtown&quot;</span><span class="p">,</span> <span class="s2">&quot;Airport&quot;</span><span class="p">,</span> <span class="s2">&quot;Mall&quot;</span><span class="p">,</span> <span class="s2">&quot;Hospital&quot;</span><span class="p">]</span>
+    <span class="n">zones</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ZONE_A&quot;</span><span class="p">,</span> <span class="s2">&quot;ZONE_B&quot;</span><span class="p">,</span> <span class="s2">&quot;ZONE_C&quot;</span><span class="p">,</span> <span class="s2">&quot;ZONE_D&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+        <span class="n">ts</span> <span class="o">=</span> <span class="n">fake</span><span class="o">.</span><span class="n">date_time_between</span><span class="p">(</span><span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;-30d&quot;</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="s2">&quot;now&quot;</span><span class="p">)</span>
+        <span class="n">occupied</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mf">0.7</span> <span class="k">if</span> <span class="mi">8</span> <span class="o">&lt;=</span> <span class="n">ts</span><span class="o">.</span><span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">18</span> <span class="k">else</span> <span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;sensor_id&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;SENSOR_</span><span class="si">{</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">ts</span><span class="p">,</span>
+            <span class="s2">&quot;occupancy_status&quot;</span><span class="p">:</span> <span class="n">occupied</span><span class="p">,</span>
+            <span class="s2">&quot;vehicle_count&quot;</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">occupied</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">35</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span>
+            <span class="s2">&quot;vibration_level&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">5.0</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span>
+            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">locations</span><span class="p">),</span>
+            <span class="s2">&quot;parking_zone&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">zones</span><span class="p">),</span>
+            <span class="s2">&quot;transaction_hash&quot;</span><span class="p">:</span> <span class="n">fake</span><span class="o">.</span><span class="n">sha256</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="n">enhanced</span><span class="p">,</span> <span class="n">receipt</span> <span class="o">=</span> <span class="n">hedera_manager</span><span class="o">.</span><span class="n">store_on_blockchain</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+        <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">enhanced</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Generated </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span><span class="si">}</span><span class="s2"> blockchain-backed parking records&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">records</span>
+
+<span class="k">def</span> <span class="nf">generate_traffic_data</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+        <span class="n">ts</span> <span class="o">=</span> <span class="n">fake</span><span class="o">.</span><span class="n">date_time_between</span><span class="p">(</span><span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;-30d&quot;</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="s2">&quot;now&quot;</span><span class="p">)</span>
+        <span class="n">rush</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span> <span class="o">&lt;=</span> <span class="n">ts</span><span class="o">.</span><span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="mi">16</span> <span class="o">&lt;=</span> <span class="n">ts</span><span class="o">.</span><span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">18</span><span class="p">)</span>
+        <span class="n">vehicles</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span> <span class="k">if</span> <span class="n">rush</span> <span class="k">else</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+        <span class="n">density</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.95</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="n">rush</span> <span class="k">else</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.6</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">speed</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span> <span class="k">if</span> <span class="n">rush</span> <span class="k">else</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">congestion</span> <span class="o">=</span> <span class="s2">&quot;HIGH&quot;</span> <span class="k">if</span> <span class="n">density</span><span class="o">&gt;</span><span class="mf">0.7</span> <span class="k">else</span> <span class="s2">&quot;MEDIUM&quot;</span> <span class="k">if</span> <span class="n">density</span><span class="o">&gt;</span><span class="mf">0.4</span> <span class="k">else</span> <span class="s2">&quot;LOW&quot;</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;camera_id&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;CAM_</span><span class="si">{</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">ts</span><span class="p">,</span>
+            <span class="s2">&quot;image_url&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;https://trafficcams.com/</span><span class="si">{</span><span class="n">ts</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">_%H%M%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.jpg&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;vehicle_count&quot;</span><span class="p">:</span> <span class="n">vehicles</span><span class="p">,</span>
+            <span class="s2">&quot;traffic_density&quot;</span><span class="p">:</span> <span class="n">density</span><span class="p">,</span>
+            <span class="s2">&quot;average_speed&quot;</span><span class="p">:</span> <span class="n">speed</span><span class="p">,</span>
+            <span class="s2">&quot;congestion_level&quot;</span><span class="p">:</span> <span class="n">congestion</span><span class="p">,</span>
+            <span class="s2">&quot;processed&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;yolo_results&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+                <span class="s2">&quot;vehicles_detected&quot;</span><span class="p">:</span> <span class="n">vehicles</span><span class="p">,</span>
+                <span class="s2">&quot;confidence&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span><span class="mf">0.98</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+            <span class="p">})</span>
+        <span class="p">}</span>
+        <span class="n">enhanced</span><span class="p">,</span> <span class="n">receipt</span> <span class="o">=</span> <span class="n">hedera_manager</span><span class="o">.</span><span class="n">store_on_blockchain</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+        <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">enhanced</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Generated </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span><span class="si">}</span><span class="s2"> blockchain-backed traffic records&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">records</span>
+
+<span class="k">def</span> <span class="nf">generate_historical_data</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">):</span>
+    <span class="n">records</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">-</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">days</span><span class="p">)</span>
+    <span class="n">zones</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ZONE_A&quot;</span><span class="p">,</span><span class="s2">&quot;ZONE_B&quot;</span><span class="p">,</span><span class="s2">&quot;ZONE_C&quot;</span><span class="p">,</span><span class="s2">&quot;ZONE_D&quot;</span><span class="p">]</span>
+    <span class="n">weathers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Sunny&quot;</span><span class="p">,</span><span class="s2">&quot;Rainy&quot;</span><span class="p">,</span><span class="s2">&quot;Cloudy&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">zone</span> <span class="ow">in</span> <span class="n">zones</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">days</span><span class="p">):</span>
+            <span class="n">date_</span><span class="o">=</span><span class="n">start</span><span class="o">+</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">hour</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">):</span>
+                <span class="n">occ</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.95</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="mi">8</span><span class="o">&lt;=</span><span class="n">hour</span><span class="o">&lt;=</span><span class="mi">18</span> <span class="k">else</span> <span class="mf">0.4</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+                <span class="n">vol</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">occ</span><span class="o">*</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">2000</span><span class="p">))</span>
+                <span class="n">weather</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">weathers</span><span class="p">)</span>
+                <span class="n">record</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">&quot;zone_id&quot;</span><span class="p">:</span><span class="n">zone</span><span class="p">,</span>
+                    <span class="s2">&quot;date&quot;</span><span class="p">:</span><span class="n">date_</span><span class="o">.</span><span class="n">date</span><span class="p">(),</span>
+                    <span class="s2">&quot;hour&quot;</span><span class="p">:</span><span class="n">hour</span><span class="p">,</span>
+                    <span class="s2">&quot;average_occupancy&quot;</span><span class="p">:</span><span class="n">occ</span><span class="p">,</span>
+                    <span class="s2">&quot;traffic_volume&quot;</span><span class="p">:</span><span class="n">vol</span><span class="p">,</span>
+                    <span class="s2">&quot;weather_condition&quot;</span><span class="p">:</span><span class="n">weather</span><span class="p">,</span>
+                    <span class="s2">&quot;event_day&quot;</span><span class="p">:</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">&lt;</span><span class="mf">0.05</span><span class="p">,</span>
+                    <span class="s2">&quot;data_hash&quot;</span><span class="p">:</span><span class="n">hedera_manager</span><span class="o">.</span><span class="n">calculate_data_hash</span><span class="p">({</span><span class="s2">&quot;z&quot;</span><span class="p">:</span><span class="n">zone</span><span class="p">,</span><span class="s2">&quot;d&quot;</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">date_</span><span class="o">.</span><span class="n">date</span><span class="p">()),</span><span class="s2">&quot;h&quot;</span><span class="p">:</span><span class="n">hour</span><span class="p">})</span>
+                <span class="p">}</span>
+                <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Generated </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span><span class="si">}</span><span class="s2"> historical records&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">records</span>
+
+<span class="n">parking_data</span><span class="o">=</span><span class="n">generate_parking_data</span><span class="p">()</span>
+<span class="n">traffic_data</span><span class="o">=</span><span class="n">generate_traffic_data</span><span class="p">()</span>
+<span class="n">historical_data</span><span class="o">=</span><span class="n">generate_historical_data</span><span class="p">()</span>
+
+
+<span class="c1"># =============================================================</span>
+<span class="c1"># STEP 6: Load Data into Lakehouse</span>
+<span class="c1"># =============================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">💾 STEP 6: LOADING ENHANCED DATA TO LAKEHOUSE...&quot;</span><span class="p">)</span>
+
+<span class="n">parking_schema</span><span class="o">=</span><span class="n">StructType</span><span class="p">([</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;sensor_id&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span><span class="n">TimestampType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;occupancy_status&quot;</span><span class="p">,</span><span class="n">BooleanType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;vehicle_count&quot;</span><span class="p">,</span><span class="n">IntegerType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">,</span><span class="n">DoubleType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;vibration_level&quot;</span><span class="p">,</span><span class="n">DoubleType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;parking_zone&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;transaction_hash&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;blockchain_tx_id&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;data_hash&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;blockchain_verified&quot;</span><span class="p">,</span><span class="n">BooleanType</span><span class="p">())</span>
+<span class="p">])</span>
+<span class="n">traffic_schema</span><span class="o">=</span><span class="n">StructType</span><span class="p">([</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;camera_id&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span><span class="n">TimestampType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;image_url&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;vehicle_count&quot;</span><span class="p">,</span><span class="n">IntegerType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;traffic_density&quot;</span><span class="p">,</span><span class="n">DoubleType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;average_speed&quot;</span><span class="p">,</span><span class="n">IntegerType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;congestion_level&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;processed&quot;</span><span class="p">,</span><span class="n">BooleanType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;yolo_results&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;blockchain_tx_id&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;data_hash&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;blockchain_verified&quot;</span><span class="p">,</span><span class="n">BooleanType</span><span class="p">())</span>
+<span class="p">])</span>
+<span class="n">hist_schema</span><span class="o">=</span><span class="n">StructType</span><span class="p">([</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;zone_id&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">,</span><span class="n">DateType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;hour&quot;</span><span class="p">,</span><span class="n">IntegerType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;average_occupancy&quot;</span><span class="p">,</span><span class="n">DoubleType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;traffic_volume&quot;</span><span class="p">,</span><span class="n">IntegerType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;weather_condition&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;event_day&quot;</span><span class="p">,</span><span class="n">BooleanType</span><span class="p">()),</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;data_hash&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">())</span>
+<span class="p">])</span>
+
+<span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">parking_data</span><span class="p">,</span><span class="n">parking_schema</span><span class="p">)</span>\
+     <span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;overwriteSchema&quot;</span><span class="p">,</span><span class="s2">&quot;true&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;ParkingSensorData&quot;</span><span class="p">)</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">,</span><span class="n">traffic_schema</span><span class="p">)</span>\
+     <span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;overwriteSchema&quot;</span><span class="p">,</span><span class="s2">&quot;true&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;TrafficCameraData&quot;</span><span class="p">)</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">historical_data</span><span class="p">,</span><span class="n">hist_schema</span><span class="p">)</span>\
+     <span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;overwriteSchema&quot;</span><span class="p">,</span><span class="s2">&quot;true&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;HistoricalTraffic&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎉 Enhanced data loading completed!&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># =============================================================</span>
+<span class="c1"># STEP 7: Generate Power BI Metrics</span>
+<span class="c1"># =============================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 STEP 7: GENERATING POWER BI METRICS...&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">safe_float</span><span class="p">(</span><span class="n">v</span><span class="p">):</span> <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="k">else</span> <span class="mf">0.0</span>
+
+<span class="k">def</span> <span class="nf">generate_powerbi_metrics</span><span class="p">():</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">now</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">blk</span><span class="o">=</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            SELECT COUNT(*) as total,</span>
+<span class="s2">                   SUM(CASE WHEN blockchain_verified THEN 1 ELSE 0 END) as verified,</span>
+<span class="s2">                   AVG(CASE WHEN blockchain_verified THEN 1.0 ELSE 0.0 END) as rate</span>
+<span class="s2">            FROM ParkingSensorData</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">metrics</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;metric_id&quot;</span><span class="p">:</span><span class="s2">&quot;blk_total&quot;</span><span class="p">,</span><span class="s2">&quot;metric_name&quot;</span><span class="p">:</span><span class="s2">&quot;Total Blockchain Records&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;metric_value&quot;</span><span class="p">:</span><span class="n">safe_float</span><span class="p">(</span><span class="n">blk</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]),</span><span class="s2">&quot;metric_timestamp&quot;</span><span class="p">:</span><span class="n">now</span><span class="p">,</span>
+                        <span class="s2">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;Blockchain&quot;</span><span class="p">,</span><span class="s2">&quot;zone_id&quot;</span><span class="p">:</span><span class="s2">&quot;ALL&quot;</span><span class="p">,</span><span class="s2">&quot;data_source&quot;</span><span class="p">:</span><span class="s2">&quot;Hedera&quot;</span><span class="p">})</span>
+        <span class="n">metrics</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;metric_id&quot;</span><span class="p">:</span><span class="s2">&quot;blk_rate&quot;</span><span class="p">,</span><span class="s2">&quot;metric_name&quot;</span><span class="p">:</span><span class="s2">&quot;Blockchain Verification Rate&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;metric_value&quot;</span><span class="p">:</span><span class="n">safe_float</span><span class="p">(</span><span class="n">blk</span><span class="p">[</span><span class="s2">&quot;rate&quot;</span><span class="p">]),</span><span class="s2">&quot;metric_timestamp&quot;</span><span class="p">:</span><span class="n">now</span><span class="p">,</span>
+                        <span class="s2">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;Blockchain&quot;</span><span class="p">,</span><span class="s2">&quot;zone_id&quot;</span><span class="p">:</span><span class="s2">&quot;ALL&quot;</span><span class="p">,</span><span class="s2">&quot;data_source&quot;</span><span class="p">:</span><span class="s2">&quot;Hedera&quot;</span><span class="p">})</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Metric generation error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">metrics</span>
+
+<span class="n">metrics</span><span class="o">=</span><span class="n">generate_powerbi_metrics</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">metrics</span><span class="p">:</span>
+    <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">&quot;PowerBI_Metrics&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Generated </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span><span class="si">}</span><span class="s2"> Power BI metrics&quot;</span><span class="p">)</span>
+
+<span class="c1"># =============================================================</span>
+<span class="c1"># FINAL SUMMARY</span>
+<span class="c1"># =============================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎉 REIMAGE-AI SMART PARKING WITH HEDERA - SETUP COMPLETED!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ParkingSensorData&quot;</span><span class="p">,</span><span class="s2">&quot;TrafficCameraData&quot;</span><span class="p">,</span><span class="s2">&quot;HistoricalTraffic&quot;</span><span class="p">,</span><span class="s2">&quot;PowerBI_Metrics&quot;</span><span class="p">]:</span>
+    <span class="n">c</span><span class="o">=</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SELECT COUNT(*) as cnt FROM </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;cnt&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2"> records&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ NEXT STEPS:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   1. Run Notebook 2 - AI Processing &amp; MCP Integration&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   2. Run Notebook 3 - Power BI Dashboard &amp; Monitoring&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>StatementMeta(, d0b4adbe-9011-4d4d-acd3-20483e4fe494, 23, Finished, Available, Finished)</pre>
+</div>
+
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Requirement already satisfied: faker in /home/trusted-service-user/cluster-env/trident_env/lib/python3.11/site-packages (37.11.0)
+Requirement already satisfied: hedera-sdk-py in /nfs4/pyenv-0ae02918-bb11-432b-86b5-dbae1e3dcb87/lib/python3.11/site-packages (2.50.0)
+Requirement already satisfied: python-dotenv in /nfs4/pyenv-0ae02918-bb11-432b-86b5-dbae1e3dcb87/lib/python3.11/site-packages (1.1.1)
+Requirement already satisfied: cryptography in /home/trusted-service-user/cluster-env/trident_env/lib/python3.11/site-packages (42.0.2)
+Requirement already satisfied: tzdata in /home/trusted-service-user/cluster-env/trident_env/lib/python3.11/site-packages (from faker) (2023.3)
+Requirement already satisfied: pyjnius&gt;=1.6.1 in /nfs4/pyenv-0ae02918-bb11-432b-86b5-dbae1e3dcb87/lib/python3.11/site-packages (from hedera-sdk-py) (1.7.0)
+Requirement already satisfied: cffi&gt;=1.12 in /home/trusted-service-user/cluster-env/trident_env/lib/python3.11/site-packages (from cryptography) (1.16.0)
+Requirement already satisfied: pycparser in /home/trusted-service-user/cluster-env/trident_env/lib/python3.11/site-packages (from cffi&gt;=1.12-&gt;cryptography) (2.21)
+
+<span class="ansi-bold">[</span><span class="ansi-blue-fg">notice</span><span class="ansi-bold">]</span> A new release of pip is available: <span class="ansi-red-fg">24.0</span> -&gt; <span class="ansi-green-fg">25.2</span>
+<span class="ansi-bold">[</span><span class="ansi-blue-fg">notice</span><span class="ansi-bold">]</span> To update, run: <span class="ansi-green-fg">python -m pip install --upgrade pip</span>
+Note: you may need to restart the kernel to use updated packages.
+🚀 REIMAGE-AI SMART PARKING - WITH HEDERA BLOCKCHAIN
+🔧 STEP 1: VERIFYING LAKEHOUSE CONNECTION...
+✅ Lakehouse connected! Found 11 tables
+
+📦 STEP 2: INSTALLING REQUIRED PACKAGES...
+✅ Packages installed successfully
+
+⛓️ STEP 3: INITIALIZING HEDERA BLOCKCHAIN INTEGRATION...
+🔐 Hedera Manager Initialized (Test Mode)
+
+📋 STEP 4: CREATING ENHANCED TABLES WITH BLOCKCHAIN FIELDS...
+✅ Dropped table: ParkingSensorData
+✅ Dropped table: TrafficCameraData
+✅ Dropped table: HistoricalTraffic
+✅ Dropped table: BlockchainTransactions
+✅ Dropped table: ModelRegistry
+✅ Dropped table: PowerBI_Metrics
+✅ Created: ParkingSensorData
+✅ Created: TrafficCameraData
+✅ Created: HistoricalTraffic
+✅ Created: PowerBI_Metrics
+🎉 Enhanced tables created successfully!
+
+🚀 STEP 5: GENERATING SYNTHETIC DATA WITH BLOCKCHAIN...
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+✅ Generated 100 blockchain-backed parking records
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+🔗 Simulated Hedera Transaction 0.0.1760118728
+✅ Generated 50 blockchain-backed traffic records
+✅ Generated 672 historical records
+
+💾 STEP 6: LOADING ENHANCED DATA TO LAKEHOUSE...
+🎉 Enhanced data loading completed!
+
+📊 STEP 7: GENERATING POWER BI METRICS...
+✅ Generated 2 Power BI metrics
+
+============================================================
+🎉 REIMAGE-AI SMART PARKING WITH HEDERA - SETUP COMPLETED!
+============================================================
+   ParkingSensorData: 100 records
+   TrafficCameraData: 50 records
+   HistoricalTraffic: 672 records
+   PowerBI_Metrics: 2 records
+
+✅ NEXT STEPS:
+   1. Run Notebook 2 - AI Processing &amp; MCP Integration
+   2. Run Notebook 3 - Power BI Dashboard &amp; Monitoring
+Warning: PySpark kernel has been restarted to use updated packages.
+
 </pre>
 </div>
 </div>
