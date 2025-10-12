@@ -1,5 +1,12 @@
 # 🧠 SmartNexxie – AI Smart Parking System
 
+
+<p align="center">
+  <img src="screenshot/x.png" alt="Visual Diagram" width="1000">
+  <br>
+  <em>Figure 1: Visual Demo Diagram</em>
+</p>
+
 ### 🚗 AI-Powered Parking Analytics, Blockchain Verification, RAG Assistant, and Power BI Integration
 
 **SmartNexxie** is an **end-to-end intelligent parking management platform** that unifies **computer vision, IoT sensor streams, retrieval-augmented prediction (RAG), and blockchain verification** through **Microsoft Fabric’s Lakehouse** and **EventStream**.
