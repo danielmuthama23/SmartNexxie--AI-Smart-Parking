@@ -8,7 +8,7 @@
 </p>
 
 <audio controls>
-  <source src="screenshot/smartnexxie-demo.mp3" type="audio/mpeg">
+  <source src="screenshot/smartnexxie-demo.mp3.mp3" type="audio/mpeg">
 </audio>
 
 ## 🚗 AI-Powered Parking Analytics, Blockchain Verification, RAG Assistant, and Power BI Integration
