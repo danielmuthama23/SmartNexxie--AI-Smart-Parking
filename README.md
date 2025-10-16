@@ -7,10 +7,12 @@
   <em>Figure 1: Visual Demo Diagram</em>
 </p>
 
-<audio controls>
+🔊 [Click to listen to SmartNexxie System Overview](https://raw.githubusercontent.com/danielmuthama23/SmartNexxie--AI-Smart-Parking/main/smartnexxie-demo.mp3)
+
+<!-- <audio controls>
   <source src="https://raw.githubusercontent.com/danielmuthama23/screenshot/smartnexxie-demo.mp3" type="audio/mpeg">
 demo
-</audio>
+</audio> -->
 
 ## 🚗 AI-Powered Parking Analytics, Blockchain Verification, RAG Assistant, and Power BI Integration
 
