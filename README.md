@@ -63,11 +63,7 @@ This solution integrates **YOLOv8**, **PySpark**, **Vector Embeddings**, **Model
    ┌────────────────────────────────────────────────────────┐
    │ Power BI + Fabric Dashboards + Visual RAG Assistant     │
    └────────────────────────────────────────────────────────┘
-```
 
-````
-
----
 
 ## ⚙️ SETUP INSTRUCTIONS
 
