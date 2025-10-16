@@ -8,7 +8,7 @@
 </p>
 
 <audio controls>
-  <source src="https://raw.githubusercontent.com/danielmuthama23/screenshot/smartnexxie-demo.mp3.mp3" type="audio/mpeg">
+  <source src="https://raw.githubusercontent.com/danielmuthama23/screenshot/smartnexxie-demo.mp3" type="audio/mpeg">
 demo
 </audio>
 
