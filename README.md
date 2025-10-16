@@ -7,7 +7,7 @@
   <em>Figure 1: Visual Demo Diagram</em>
 </p>
 
-🔊 [Click to listen to SmartNexxie System Overview](https://raw.githubusercontent.com/danielmuthama23/SmartNexxie--AI-Smart-Parking/main/smartnexxie-demo.mp3)
+🔊 [Click to listen to SmartNexxie System Overview](https://raw.githubusercontent.com/danielmuthama23/SmartNexxie--AI-Smart-Parking/main/screenshot/smartnexxie-demo.mp3)
 
 <!-- <audio controls>
   <source src="https://raw.githubusercontent.com/danielmuthama23/screenshot/smartnexxie-demo.mp3" type="audio/mpeg">
