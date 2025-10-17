@@ -1,0 +1,3 @@
+parking_zone,occupancy_status,timestamp,blockchain_verified,blockchain_tx_id
+Zone B,False,2025-10-11 08:05,True,tx002
+Zone A,True,2025-10-11 08:00,True,tx001

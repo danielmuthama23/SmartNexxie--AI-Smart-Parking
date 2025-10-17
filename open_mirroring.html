@@ -15104,7 +15104,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div id="cell-id=534fcf1e" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div id="cell-id=f710da23" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15120,14 +15120,15 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython"><pre><span></span><span class="c1"># =============================================================</span>
 <span class="c1"># 🔁 OPEN MIRRORING CONFIGURATION (Auto-Healing Simulation Mode)</span>
 <span class="c1"># =============================================================</span>
+
 <span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
-<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">StructType</span><span class="p">,</span> <span class="n">StructField</span><span class="p">,</span> <span class="n">StringType</span>
 <span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">F</span>
 
 <span class="k">class</span> <span class="nc">OpenMirroringManager</span><span class="p">:</span>
@@ -15167,7 +15168,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚙️ Continuing in simulation mode...&quot;</span><span class="p">)</span>
 
     <span class="c1"># ---------------------------------------------------------</span>
-    <span class="c1"># Step 2 – Create fake data if source tables don’t exist</span>
+    <span class="c1"># Step 2 – Ensure mock tables exist (create if missing)</span>
     <span class="c1"># ---------------------------------------------------------</span>
     <span class="k">def</span> <span class="nf">_ensure_table_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">full_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">database_name</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -15178,7 +15179,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ️ Table not found: </span><span class="si">{</span><span class="n">full_name</span><span class="si">}</span><span class="s2"> — creating mock data...&quot;</span><span class="p">)</span>
 
-            <span class="c1"># Create mock dataframe depending on table</span>
+            <span class="c1"># Create mock DataFrame per table</span>
             <span class="k">if</span> <span class="n">table_name</span> <span class="o">==</span> <span class="s2">&quot;ParkingSensorData&quot;</span><span class="p">:</span>
                 <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
                     <span class="p">(</span><span class="s2">&quot;Zone A&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;2025-10-11 08:00&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;tx001&quot;</span><span class="p">),</span>
@@ -15203,6 +15204,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
                 <span class="n">schema</span> <span class="o">=</span> <span class="n">StructType</span><span class="p">([</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">StringType</span><span class="p">())])</span>
                 <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([],</span> <span class="n">schema</span><span class="p">)</span>
 
+            <span class="c1"># Ensure database exists</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CREATE DATABASE IF NOT EXISTS </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">database_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Mock table created: </span><span class="si">{</span><span class="n">full_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -15233,10 +15235,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Skipping </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🏁 Mirroring simulation completed successfully.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🏁 Mirroring simulation completed successfully.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># ---------------------------------------------------------</span>
-<span class="c1"># Optional standalone execution</span>
+<span class="c1"># ✅ Optional standalone execution</span>
 <span class="c1"># ---------------------------------------------------------</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;OpenMirroringSetup&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
@@ -15265,7 +15267,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>StatementMeta(, c52c7127-d489-45fe-889e-1804c3546897, 6, Finished, Available, Finished)</pre>
+<pre>StatementMeta(, 36585711-9b79-4c83-8c72-643e2aa1302f, 3, Finished, Available, Finished)</pre>
 </div>
 
 </div>
@@ -15281,16 +15283,14 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 ℹ️ Skipping ALTER DATABASE (Fabric-only feature).
 
 🧱 SIMULATING OPEN MIRRORING (Local Copy Mode)...
-ℹ️ Table not found: ParkingDataLakehouse.ParkingSensorData — creating mock data...
-✅ Mock table created: ParkingDataLakehouse.ParkingSensorData
+✅ Found source table: ParkingDataLakehouse.ParkingSensorData
 ✅ Mirrored table created: MirroredData.ParkingSensorData (2 rows)
-ℹ️ Table not found: ParkingDataLakehouse.TrafficCameraData — creating mock data...
-✅ Mock table created: ParkingDataLakehouse.TrafficCameraData
+✅ Found source table: ParkingDataLakehouse.TrafficCameraData
 ✅ Mirrored table created: MirroredData.TrafficCameraData (2 rows)
-ℹ️ Table not found: ParkingDataLakehouse.YOLOProcessedData — creating mock data...
-✅ Mock table created: ParkingDataLakehouse.YOLOProcessedData
+✅ Found source table: ParkingDataLakehouse.YOLOProcessedData
 ✅ Mirrored table created: MirroredData.YOLOProcessedData (2 rows)
 🏁 Mirroring simulation completed successfully.
+
 ✅ Open Mirroring setup completed successfully.
 </pre>
 </div>
