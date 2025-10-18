@@ -1,12 +1,94 @@
-[
-  {
-    "id": 1,
-    "name": "Zone A1",
-    "points": [[100, 200], [200, 200], [200, 300], [100, 300]]
-  },
-  {
-    "id": 2,
-    "name": "Zone A2",
-    "points": [[220, 200], [320, 200], [320, 300], [220, 300]]
-  }
-]
+{
+  "parking_zones": [
+    {
+      "zone_id": "A1",
+      "coordinates": {
+        "x1": 910,
+        "y1": 447,
+        "x2": 1056,
+        "y2": 555
+      },
+      "status": "free"
+    },
+    {
+      "zone_id": "A2",
+      "coordinates": {
+        "x1": 2,
+        "y1": 420,
+        "x2": 74,
+        "y2": 555
+      },
+      "status": "free"
+    },
+    {
+      "zone_id": "A3",
+      "coordinates": {
+        "x1": 533,
+        "y1": 298,
+        "x2": 631,
+        "y2": 395
+      },
+      "status": "occupied"
+    },
+    {
+      "zone_id": "A4",
+      "coordinates": {
+        "x1": 426,
+        "y1": 297,
+        "x2": 524,
+        "y2": 395
+      },
+      "status": "occupied"
+    },
+    {
+      "zone_id": "A5",
+      "coordinates": {
+        "x1": 0,
+        "y1": 261,
+        "x2": 120,
+        "y2": 372
+      },
+      "status": "occupied"
+    },
+    {
+      "zone_id": "A6",
+      "coordinates": {
+        "x1": 533,
+        "y1": 191,
+        "x2": 632,
+        "y2": 289
+      },
+      "status": "occupied"
+    },
+    {
+      "zone_id": "A7",
+      "coordinates": {
+        "x1": 533,
+        "y1": 191,
+        "x2": 632,
+        "y2": 289
+      },
+      "status": "occupied"
+    },
+    {
+      "zone_id": "A8",
+      "coordinates": {
+        "x1": 426,
+        "y1": 190,
+        "x2": 524,
+        "y2": 288
+      },
+      "status": "occupied"
+    },
+    {
+      "zone_id": "A9",
+      "coordinates": {
+        "x1": 426,
+        "y1": 190,
+        "x2": 524,
+        "y2": 288
+      },
+      "status": "occupied"
+    }
+  ]
+}
