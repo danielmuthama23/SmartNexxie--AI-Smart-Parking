@@ -1,0 +1,4 @@
+metric_id,metric_name,metric_value,metric_timestamp,category,zone_id,data_source
+blockchain_verification_rate,Blockchain Verification Rate,1.0,2025-10-10 18:02:47.795690,Blockchain Security,SYSTEM_WIDE,Hedera Network
+estimated_revenue,Estimated Hourly Revenue,662.5,2025-10-10 18:02:47.795690,Business Intelligence,CITY_WIDE,Revenue Analytics
+mcp_audit_coverage,MCP Audit Coverage,0.0,2025-10-10 18:02:47.795690,Model Governance,SYSTEM_WIDE,MCP System
